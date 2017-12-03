@@ -68,25 +68,6 @@ public abstract class HttpRequestUtils {
     protected static RequestConfig defaultRequestConfig = null;
     protected static HttpClientConfig config = null;
 	
-	static{
-    	
-    	try {
-    		
-    		config = HttpConfigUtils.getConfig();
-    		
-			//设置请求和传输超时时间 
-			defaultRequestConfig = RequestConfig.custom()
-			    //Socket读数据的超时时间 	
-				.setSocketTimeout(config.getSocketTimeout())
-			 	 // 设置连接超时时间(单位毫秒)  
-			 	.setConnectTimeout(config.getConnectTimeout())
-			 	.setConnectionRequestTimeout(config.getConnectTimeout())
-			 	.setExpectContinueEnabled(false).build();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-    }
 	
 	
 	public static <T extends HttpRequestBase> T getHttpRequest(T httpRequest,Map<String, String> headers) {

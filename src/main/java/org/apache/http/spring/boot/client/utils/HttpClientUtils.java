@@ -77,95 +77,9 @@ public abstract class HttpClientUtils extends HttpRequestUtils {
      * 处理响应结果为ResponseContent对象结果工具类
      */
     public static final AbstractResponseHandler<ResponseContent> DEFAULT_CONTENT_HANDLER = new NestedResponseHandler(UTF_8);
-    
-    /**
-     * 普通http请求的HttpClient连接池
-     */
-    protected static HttpClientConnectionManager httpConnectionManager =  null;
-
-	protected static ConnectionKeepAliveStrategy keepAliveStrat = null;
-    
-    protected static HttpRequestRetryHandler requestRetryHandler = null; 
-    
-    protected static HttpRequestInterceptor summaryInterceptor = new HttpRequestSummaryInterceptor();
-    
-    protected static HttpRequestInterceptor headerInterceptor = new HttpRequestHeaderInterceptor();
-    
-    protected static HttpRequestInterceptor gzipInterceptor = new HttpRequestGzipInterceptor();
-    
-    protected static HttpResponseInterceptor ungzipInterceptor = new HttpResponseGzipInterceptor();
-    
-    // 创建默认Socket参数
-    protected static SocketConfig defaultSocketConfig = null;
-    protected static HttpClientConfig config = null;
-    
-    static{
-    	
-    	try {
-    		
-    		config = HttpConfigUtils.getConfig();
-			
-    		keepAliveStrat = new ConnectionKeepAliveStrategyHandler(config.isUserManager(), config.getKeepAlive(), config.getHostProperties());
-    		requestRetryHandler = new HttpRequestExceptionRetryHandler(config.getRetryTime());
-    		
-			if(config.isUserManager()){
-				httpConnectionManager =  HttpClientConnectionManagerBuilder.getInstance(config).getHttpConnectionManager();
-			}
-			
-			// 创建默认Socket参数
-			defaultSocketConfig = SocketConfig.custom()
-			    //nagle算法默认是打开的，会引起delay的问题；所以要手工关掉
-			    .setTcpNoDelay(config.isTcpNoDelay())
-			    //设置读数据超时时间(单位毫秒) 
-			    .setSoTimeout(config.getSoTimeout()).build();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-    }
-		
-    /**
-     * 
-     *@描述：创建默认的httpClient实例.优先使用连接池对象，如果连接池对象使用过程出现异常，则使用非安全连接
-     *@创建人:wandalong
-     *@创建时间:Jul 1, 20154:04:47 PM
-     *@return
-     *@修改人:
-     *@修改时间:
-     *@修改描述:
-     */
-    public static CloseableHttpClient getCloseableHttpClient(HttpClientConnectionManager connectionManager){
-		
-		try {
-			
-			//创建忽略任何安全校验的httpClient实例.
-			HttpClientBuilder clientBuilder =  HttpClients.custom()
-									//添加度量监控
-									//.setRequestExecutor(HttpClientMetricUtils.getHttpRequestExecutor())
-									.setKeepAliveStrategy(keepAliveStrat)
-									.setRetryHandler(requestRetryHandler)
-									//设置相关的压缩文件标识，在请求头的信息中  
-									.addInterceptorFirst(headerInterceptor)
-									.addInterceptorFirst(gzipInterceptor)
-									.addInterceptorLast(summaryInterceptor)
-									//设置相应相应的拦截器，用于处理接收到的拦截的压缩信息
-									.addInterceptorLast(ungzipInterceptor);
-			
-			/**--------------以下设置为客户端级别，作为所有请求的默认值：-------------------------------------------------------------------------*/
-	        
-			clientBuilder.setDefaultRequestConfig(defaultRequestConfig).setDefaultSocketConfig(defaultSocketConfig);
-			
-			//设置链接管理池
-			if(connectionManager != null && config.isUserManager()){
-				clientBuilder.setConnectionManager(connectionManager);
-			}
-			return clientBuilder.build();
-		} catch (Exception e) {
-			return HttpClients.createDefault();
-		}
-	}
 	
-	
+    
+    
 	 /**
 	  * 
 	  * @description	： 使用Apache HttpClient 组件使用Get方式的访问URL

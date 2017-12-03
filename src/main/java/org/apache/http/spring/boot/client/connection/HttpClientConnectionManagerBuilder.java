@@ -90,10 +90,9 @@ public class HttpClientConnectionManagerBuilder {
     
     /**
      * 
-     * @description: 创建一个不安全连接 的池管理对象;全局只有一个的对象
-     * @author : <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
-     * @date : Jun 30, 2015
-     * @time : 5:32:30 PM 
+     * @description	： 创建一个不安全连接 的池管理对象;全局只有一个的对象
+     * @author 		： <a href="https://github.com/vindell">vindell</a>
+     * @date 		：2017年12月3日 下午4:44:29
      * @return
      */
     public PoolingHttpClientConnectionManager getUnsafeSSLConnectionManager(){
@@ -115,13 +114,11 @@ public class HttpClientConnectionManagerBuilder {
     
     /**
      * 
-     * @description: 创建一个 安全连接 的池管理对象;全局只有一个的对象
-     * @author : <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
-     * @date : Jun 30, 2015
-     * @time : 5:33:55 PM 
+     * @description	： 创建一个 安全连接 的池管理对象;全局只有一个的对象
+     * @author 		： <a href="https://github.com/vindell">vindell</a>
+     * @date 		：2017年12月3日 下午4:44:21
      * @param keystore
      * @param storePassword
-     * @param idleClear
      * @return
      */
     public PoolingHttpClientConnectionManager getSafeSSLConnectionManager(File keystore,String storePassword){
@@ -159,10 +156,9 @@ public class HttpClientConnectionManagerBuilder {
     
     /**
      * 
-     * @description: 根据SSLContext 创建一个Http连接池管理对象;每次调用会产生一个新的对象
-     * @author : <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
-     * @date : Jun 30, 2015
-     * @time : 5:34:06 PM 
+     * @description	： 根据SSLContext 创建一个Http连接池管理对象;每次调用会产生一个新的对象
+     * @author 		： <a href="https://github.com/vindell">vindell</a>
+     * @date 		：2017年12月3日 下午4:44:10
      * @param sslContext
      * @return
      */
@@ -227,7 +223,8 @@ public class HttpClientConnectionManagerBuilder {
             .setMessageConstraints(messageConstraints)
             .build();
         
-        /**多线程同时访问httpclient，例如同时从一个站点上下载多个文件。对于同一个HttpConnection同一个时间只能有一个线程访问，
+        /**
+         * 多线程同时访问httpclient，例如同时从一个站点上下载多个文件。对于同一个HttpConnection同一个时间只能有一个线程访问，
          * 为了保证多线程工作环境下不产生冲突，httpclient使用了一个多线程连接管理器的类：MultiThreadedHttpConnectionManager，
          * 要使用这个类很简单，只需要在构造HttpClient实例的时候传入即可，代码如下：
          **/

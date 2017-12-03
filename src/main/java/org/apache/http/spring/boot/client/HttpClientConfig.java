@@ -5,9 +5,12 @@ import java.util.Properties;
 public class HttpClientConfig {
 
 	/**
-	 * 是否开启请求连接度量监控
+	 * 是否使用连接池
 	 */
 	protected boolean userManager = Boolean.parseBoolean(HttpClientParams.HTTP_CONNECTION_MANAGER.getDefault());
+	
+	protected boolean gzip = false;
+	
 	/**
 	 * 保持连接池内的长连接时长,仅在使用连接池时有效，单位毫秒，默认30秒
 	 */

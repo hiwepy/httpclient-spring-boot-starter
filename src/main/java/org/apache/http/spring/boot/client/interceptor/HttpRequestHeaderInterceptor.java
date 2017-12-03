@@ -8,8 +8,6 @@ import org.apache.http.HttpRequest;
 import org.apache.http.HttpRequestInterceptor;
 import org.apache.http.protocol.HttpContext;
 
-import org.apache.http.spring.boot.client.utils.HttpConfigUtils;
-
 /**
  * 
  * @className	： HttpRequestHeaderInterceptor
@@ -21,10 +19,10 @@ import org.apache.http.spring.boot.client.utils.HttpConfigUtils;
 public class HttpRequestHeaderInterceptor implements HttpRequestInterceptor {
 	
 	//初始化配置文件
-	protected static Properties cachedProperties = new Properties();
+	protected Properties cachedProperties = new Properties();
 	
-	public HttpRequestHeaderInterceptor(){	
-		cachedProperties = HttpConfigUtils.getConfig().getHeaderProperties();
+	public HttpRequestHeaderInterceptor(Properties properties){	
+		this.cachedProperties.putAll(properties);
 	}
 	
 	@Override
