@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = HttpclientProperties.PREFIX)
 public class HttpclientProperties extends HttpClientConfig {
 
-	public final String PREFIX = "httpclient";
+	public final static String PREFIX = "httpclient";
 
 	public static String HTTP_CONNECTION_LOCATION = "httpclient.properties";
 	public static String HTTP_CONNECTION_HOST_LOCATION = "httpclient-host.properties";
@@ -21,7 +21,7 @@ public class HttpclientProperties extends HttpClientConfig {
 		if(clientConfig == null){
 			
 			clientConfig = new HttpClientConfig();
-			
+			/*
 			try {
 
 				Properties properties = ConfigUtils.getProperties(HttpConfigUtils.class, HTTP_CONNECTION_LOCATION);
@@ -47,7 +47,7 @@ public class HttpclientProperties extends HttpClientConfig {
 			} catch (Exception ex) {
 				LOG.warn("Could not load properties from classes/{0} : {1}", HTTP_CONNECTION_LOCATION, ex.getMessage());
 			}
-
+*/
 			try {
 
 				Properties hostProperties = ConfigUtils.getProperties(HttpConfigUtils.class, HTTP_CONNECTION_HOST_LOCATION);
@@ -97,7 +97,6 @@ public class HttpclientProperties extends HttpClientConfig {
 	public void setHosts(Properties hosts) {
 		this.hosts = hosts;
 	}
-	
 
 	public boolean getBooleanProperty(Properties properties, HttpClientParams key) { 
 		String property = properties.getProperty(key.getName(), key.getDefault()); 

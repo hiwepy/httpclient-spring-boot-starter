@@ -39,6 +39,7 @@
 		<httpcomponents.version>4.5.1</httpcomponents.version>
 		<httpclient.version>4.5.3</httpclient.version>
 		<httpmime.version>4.5.3</httpmime.version>
+		<j2cache.version>2.3.1-release</j2cache.version>
 	</properties>
 
 	<dependencies>
@@ -184,6 +185,12 @@
 		    <groupId>com.google.guava</groupId>
 		    <artifactId>guava</artifactId>
 		    <version>23.5-jre</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/net.oschina.j2cache/j2cache-core -->
+		<dependency>
+		    <groupId>net.oschina.j2cache</groupId>
+		    <artifactId>j2cache-core</artifactId>
+		    <version>${j2cache.version}</version>
 		</dependency>
 
 	</dependencies>
