@@ -3,7 +3,7 @@
 
 ### 说明
 
- > 基于 httpclient 实现的验证码 Spring Boot Starter 实现
+ > 基于 httpclient 的 Spring Boot Starter 实现
 
 1. 扩展常用函数
 2. 实现连接心跳检查
@@ -21,4 +21,4 @@
 
 ### Simple ：  CaptchaResolver Extends
 
-[https://github.com/vindell/spring-boot-starter-samples/tree/master/spring-boot-simple-httpclient](https://github.com/vindell/spring-boot-starter-samples/tree/master/spring-boot-simple-httpclient "spring-boot-simple-httpclient")
+[https://github.com/vindell/spring-boot-starter-samples/tree/master/spring-boot-sample-httpclient](https://github.com/vindell/spring-boot-starter-samples/tree/master/spring-boot-sample-httpclient "spring-boot-sample-httpclient")
