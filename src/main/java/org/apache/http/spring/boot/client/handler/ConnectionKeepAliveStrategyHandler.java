@@ -14,7 +14,7 @@ import org.springframework.util.StringUtils;
  * *******************************************************************
  * @className	： ConnectionKeepAliveStrategyHandler
  * @description	：
- * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
+ * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">vindell</a>
  * @date		： Mar 8, 2016 11:53:31 AM
  * @version 	V1.0 
  * *******************************************************************

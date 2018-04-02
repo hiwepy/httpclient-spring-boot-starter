@@ -25,7 +25,7 @@ public abstract class HttpClientSSLUtils {
 	/**
 	 * 
 	 *@描述		：返回信任所有证书的HttpClient
-	 *@创建人	: wandalong
+	 *@创建人	: vindell
 	 *@创建时间	: Mar 7, 201611:22:07 PM
 	 *@return
 	 *@修改人	: 
@@ -51,7 +51,7 @@ public abstract class HttpClientSSLUtils {
 	/**
 	 * 
 	 *@描述		：返回通过证书构建的HttpClient
-	 *@创建人	: wandalong
+	 *@创建人	: vindell
 	 *@创建时间	: Mar 7, 201611:22:13 PM
 	 *@param keystore
 	 *@param storePassword

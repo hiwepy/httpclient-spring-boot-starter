@@ -83,7 +83,7 @@ public abstract class HttpClientUtils extends HttpRequestUtils {
 	 /**
 	  * 
 	  * @description	： 使用Apache HttpClient 组件使用Get方式的访问URL
-	  * @author 		： wandalong
+	  * @author 		： vindell
 	  * @date 			：Jun 30, 2015 6:20:19 PM
 	  * @param baseURL
 	  * @return
@@ -97,7 +97,7 @@ public abstract class HttpClientUtils extends HttpRequestUtils {
 	/**
 	 * 
 	 * @description ：使用Apache HttpClient 组件使用get方式的访问URL
-	 * @author ： wandalong
+	 * @author ： vindell
 	 * @date ：2015-6-24 上午09:13:23
 	 * @param baseURL
 	 * @param paramsMap
@@ -111,7 +111,7 @@ public abstract class HttpClientUtils extends HttpRequestUtils {
 	/**
 	 * 
 	 * @description ：使用apache HttpClient 组件进行get方式的请求
-	 * @author ： wandalong
+	 * @author ： vindell
 	 * @date ：2015-6-24 上午09:13:23
 	 * @param baseURL
 	 * @param paramsMap
@@ -126,7 +126,7 @@ public abstract class HttpClientUtils extends HttpRequestUtils {
 	/**
 	 * 
 	 * @description ：使用apache HttpClient 组件进行get方式的请求
-	 * @author ： wandalong
+	 * @author ： vindell
 	 * @date ：2015-6-24 上午09:13:23
 	 * @param baseURL
 	 * @param paramsMap
@@ -165,7 +165,7 @@ public abstract class HttpClientUtils extends HttpRequestUtils {
 	/**
 	 * 
 	 * @description ： 使用apache HttpClient 组件进行post方式的请求;且对参数使用UTF-8编码
-	 * @author ： wandalong
+	 * @author ： vindell
 	 * @date ：2015-6-24 上午09:13:35
 	 * @param baseURL
 	 * @param paramsMap
@@ -180,7 +180,7 @@ public abstract class HttpClientUtils extends HttpRequestUtils {
 	/**
 	 * 
 	 * @description ： 使用apache HttpClient 组件进行post方式的请求；Content-Type 为  application/x-www-form-urlencoded
-	 * @author ： wandalong
+	 * @author ： vindell
 	 * @date ：2015-6-24 上午09:13:35
 	 * @param baseURL
 	 * @param paramsMap
@@ -194,7 +194,7 @@ public abstract class HttpClientUtils extends HttpRequestUtils {
 	 /**
      * 
      * @description	： 使用apache HttpClient 组件进行post方式的请求;可上传文件对象
-     * @author 		： wandalong
+     * @author 		： vindell
      * @date 		：Jun 30, 2015 7:14:54 PM
      * @param baseURL
      * @param paramsMap
@@ -211,7 +211,7 @@ public abstract class HttpClientUtils extends HttpRequestUtils {
     /**
      * 
      * @description	： 使用apache HttpClient 组件进行post方式的请求;可上传文件对象
-     * @author 		： wandalong
+     * @author 		： vindell
      * @date 		：Jun 30, 2015 7:14:54 PM
      * @param baseURL
      * @param paramsMap
@@ -271,7 +271,7 @@ public abstract class HttpClientUtils extends HttpRequestUtils {
     /**
 	 * 
 	 * @description ： 使用apache HttpClient 组件进行post方式的请求；Content-Type 为  application/json
-	 * @author ： wandalong
+	 * @author ： vindell
 	 * @date ：2015-6-24 上午09:13:35
 	 * @param baseURL
 	 * @param paramsMap
@@ -285,7 +285,7 @@ public abstract class HttpClientUtils extends HttpRequestUtils {
     /**
 	 * 
 	 * @description ： 使用apache HttpClient 组件进行post方式的请求；Content-Type 为  application/json
-	 * @author ： wandalong
+	 * @author ： vindell
 	 * @date ：2015-6-24 上午09:13:35
 	 * @param baseURL
 	 * @param paramsMap
@@ -299,7 +299,7 @@ public abstract class HttpClientUtils extends HttpRequestUtils {
     /**
 	 * 
 	 * @description ： 使用apache HttpClient 组件进行post方式的请求；Content-Type 为  application/json
-	 * @author ： wandalong
+	 * @author ： vindell
 	 * @date ：2015-6-24 上午09:13:35
 	 * @param baseURL
 	 * @param paramsMap
@@ -362,7 +362,7 @@ public abstract class HttpClientUtils extends HttpRequestUtils {
 	 * } finally {
 	 * 	 HttpClientUtils.releaseQuietly(httpRequest);
 	 * }
-	 * @author : wandalong
+	 * @author : vindell
 	 * @date 上午12:15:37 2015-9-4 
 	 * @param httpRequest：要释放链接的  HttpRequestBase子对象, 可能为空或者已经关闭.
 	 * @return  void 
@@ -395,7 +395,7 @@ public abstract class HttpClientUtils extends HttpRequestUtils {
 	 * 	HttpClientUtils.closeQuietly(httpResponse);
 	 * }
 	 * </pre>
-	 * @author : wandalong
+	 * @author : vindell
 	 * @date 上午12:18:50 2015-9-4 
 	 * @param response：要释放资源的  HttpResponse对象, 可能为空或者已经关闭.
 	 * @return  void 
@@ -432,7 +432,7 @@ public abstract class HttpClientUtils extends HttpRequestUtils {
 	 * 	HttpClientUtils.closeQuietly(httpResponse);
 	 * }
 	 * </pre>
-	 * @author : wandalong
+	 * @author : vindell
 	 * @date 上午12:17:49 2015-9-4 
 	 * @param response：要释放资源的  HttpResponse对象, 可能为空或者已经关闭.
 	 * @return  void 
@@ -468,7 +468,7 @@ public abstract class HttpClientUtils extends HttpRequestUtils {
 	 * 	HttpClientUtils.closeQuietly(httpClient);
 	 * }
 	 * </pre>
-	 * @author : wandalong
+	 * @author : vindell
 	 * @date 上午12:16:16 2015-9-4 
 	 * @param httpClient ：要关闭的  HttpClient对象, 可能为空或者已经关闭.
 	 * @return  void 返回类型

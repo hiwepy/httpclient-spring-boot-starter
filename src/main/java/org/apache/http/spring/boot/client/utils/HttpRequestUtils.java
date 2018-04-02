@@ -37,7 +37,7 @@ import org.apache.http.spring.boot.client.HttpClientConfig;
  * 
  * @className	： HttpRequestUtils
  * @description	： HttpClient请求准备处理工具；如 构建URL,处理参数
- * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
+ * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">vindell</a>
  * @date		： 2015-7-1 下午10:36:06
  */
 public abstract class HttpRequestUtils {
@@ -96,7 +96,7 @@ public abstract class HttpRequestUtils {
 	/**
 	 * 
 	 * @description	：构建HttpGet对象
-	 * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
+	 * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">vindell</a>
 	 * @date 		：2015-7-1 下午11:32:46
 	 * @param baseURL
 	 * @param paramsMap
@@ -110,7 +110,7 @@ public abstract class HttpRequestUtils {
 	/**
 	 * 
 	 * @description	：构建HttpGet对象
-	 * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
+	 * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">vindell</a>
 	 * @date 		：2015-7-1 下午11:32:46
 	 * @param baseURL
 	 * @param paramsMap
@@ -132,7 +132,7 @@ public abstract class HttpRequestUtils {
     /**
 	 * 
 	 * @description	： 构建HttpPost对象
-	 * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
+	 * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">vindell</a>
 	 * @date 		：2015-6-28 下午11:03:55
 	 * @param baseURL
 	 * @param paramsMap

@@ -43,7 +43,7 @@ import org.springframework.util.StringUtils;
  * *******************************************************************
  * @className	： HttpClientConnectionManagerBuilder
  * @description	： Http连接池管理工具
- * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
+ * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">vindell</a>
  * @date		： Mar 8, 2016 11:54:14 AM
  * @version 	V1.0 
  * *******************************************************************

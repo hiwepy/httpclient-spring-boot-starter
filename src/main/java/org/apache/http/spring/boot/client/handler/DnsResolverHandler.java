@@ -17,7 +17,7 @@ import org.apache.http.spring.boot.client.interceptor.HttpRequestHeaderIntercept
  * *******************************************************************
  * @className	： DnsResolverHandler
  * @description	： TODO(描述这个类的作用)
- * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
+ * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">vindell</a>
  * @date		： Mar 8, 2016 11:53:09 AM
  * @version 	V1.0 
  * *******************************************************************

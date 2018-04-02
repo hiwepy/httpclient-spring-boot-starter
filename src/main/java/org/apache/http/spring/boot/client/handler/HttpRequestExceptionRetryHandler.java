@@ -50,7 +50,7 @@ import org.apache.http.protocol.HttpContext;
  *	
  *	如果要自定义异常处理机制，我们需要实现HttpRequestRetryHandler接口。
  * </pre>
- * @author: wandalong
+ * @author: vindell
  * @date : 上午10:30:25 2015-7-14 
  */
 public class HttpRequestExceptionRetryHandler implements HttpRequestRetryHandler {

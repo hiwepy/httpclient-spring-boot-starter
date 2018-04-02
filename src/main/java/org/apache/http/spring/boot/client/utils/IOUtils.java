@@ -46,7 +46,7 @@ import org.springframework.util.Assert;
  * 
  * @className ： IOUtils
  * @description ： 扩展org.apache.commons.io.IOUtils工具对象
- * @author ： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
+ * @author ： <a href="mailto:hnxyhcwdl1003@163.com">vindell</a>
  * @date ： Dec 15, 2016 12:08:48 PM
  * @version V1.0
  *          *******************************************************************
@@ -479,7 +479,7 @@ public abstract class IOUtils extends org.apache.commons.io.IOUtils {
 	/**
 	 * 
 	 * @description ： 跳过指定的长度,实现断点续传
-	 * @author ： wandalong
+	 * @author ： vindell
 	 * @param input
 	 * @param offset
 	 * @throws IOException
@@ -502,8 +502,8 @@ public abstract class IOUtils extends org.apache.commons.io.IOUtils {
 	/**
 	 * 
 	 * @description ：跳过指定的长度,实现断点续传
-	 * @author ： wandalong
-	 * @date ：Jan 15, 2016 3:02:5wandalongrows IOException
+	 * @author ： vindell
+	 * @date ：Jan 15, 2016 3:02:5vindellrows IOException
 	 */
 	public static void skip(FileChannel channel, long offset)
 			throws IOException {

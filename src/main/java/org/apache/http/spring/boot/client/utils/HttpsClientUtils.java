@@ -24,7 +24,7 @@ import org.springframework.util.StringUtils;
  * 
  * @className 	： HttpClientUtils
  * @description ： 使用 Apache HttpClient 组件进行get,post方式的请求
- * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
+ * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">vindell</a>
  * @date 		： 2015-6-24 上午09:18:12
  */
 public abstract class HttpsClientUtils extends HttpClientUtils{
@@ -44,7 +44,7 @@ public abstract class HttpsClientUtils extends HttpClientUtils{
 	 /**
 	  * 
 	  * @description	： 使用Apache HttpClient 组件使用Get方式的访问URL
-	  * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
+	  * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">vindell</a>
 	  * @date 			：Jun 30, 2015 6:20:19 PM
 	  * @param baseURL
 	  * @return
@@ -58,7 +58,7 @@ public abstract class HttpsClientUtils extends HttpClientUtils{
 	/**
 	 * 
 	 * @description ：使用Apache HttpClient 组件使用get方式的访问URL
-	 * @author ： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
+	 * @author ： <a href="mailto:hnxyhcwdl1003@163.com">vindell</a>
 	 * @date ：2015-6-24 上午09:13:23
 	 * @param baseURL
 	 * @param paramsMap
@@ -72,7 +72,7 @@ public abstract class HttpsClientUtils extends HttpClientUtils{
 	/**
 	 * 
 	 * @description ：使用apache HttpClient 组件进行get方式的请求
-	 * @author ： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
+	 * @author ： <a href="mailto:hnxyhcwdl1003@163.com">vindell</a>
 	 * @date ：2015-6-24 上午09:13:23
 	 * @param baseURL
 	 * @param paramsMap
@@ -87,7 +87,7 @@ public abstract class HttpsClientUtils extends HttpClientUtils{
 	/**
 	 * 
 	 * @description ：使用apache HttpClient 组件进行get方式的请求
-	 * @author ： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
+	 * @author ： <a href="mailto:hnxyhcwdl1003@163.com">vindell</a>
 	 * @date ：2015-6-24 上午09:13:23
 	 * @param baseURL
 	 * @param paramsMap
@@ -122,7 +122,7 @@ public abstract class HttpsClientUtils extends HttpClientUtils{
 	/**
 	 * 
 	 * @description ： 使用apache HttpClient 组件进行post方式的请求;且对参数使用UTF-8编码
-	 * @author ： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
+	 * @author ： <a href="mailto:hnxyhcwdl1003@163.com">vindell</a>
 	 * @date ：2015-6-24 上午09:13:35
 	 * @param baseURL
 	 * @param paramsMap
@@ -136,7 +136,7 @@ public abstract class HttpsClientUtils extends HttpClientUtils{
 	/**
 	 * 
 	 * @description ： 使用apache HttpClient 组件进行post方式的请求；Content-Type 为  application/x-www-form-urlencoded
-	 * @author ： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
+	 * @author ： <a href="mailto:hnxyhcwdl1003@163.com">vindell</a>
 	 * @date ：2015-6-24 上午09:13:35
 	 * @param baseURL
 	 * @param paramsMap
@@ -150,7 +150,7 @@ public abstract class HttpsClientUtils extends HttpClientUtils{
 	 /**
      * 
      * @description	： 使用apache HttpClient 组件进行post方式的请求;可上传文件对象
-     * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
+     * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">vindell</a>
      * @date 		：Jun 30, 2015 7:14:54 PM
      * @param baseURL
      * @param paramsMap
@@ -167,7 +167,7 @@ public abstract class HttpsClientUtils extends HttpClientUtils{
     /**
      * 
      * @description	： 使用apache HttpClient 组件进行post方式的请求;可上传文件对象
-     * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
+     * @author 		： <a href="mailto:hnxyhcwdl1003@163.com">vindell</a>
      * @date 		：Jun 30, 2015 7:14:54 PM
      * @param baseURL
      * @param paramsMap
@@ -224,7 +224,7 @@ public abstract class HttpsClientUtils extends HttpClientUtils{
     /**
 	 * 
 	 * @description ： 使用apache HttpClient 组件进行post方式的请求；Content-Type 为  application/json
-	 * @author ： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
+	 * @author ： <a href="mailto:hnxyhcwdl1003@163.com">vindell</a>
 	 * @date ：2015-6-24 上午09:13:35
 	 * @param baseURL
 	 * @param paramsMap
@@ -239,7 +239,7 @@ public abstract class HttpsClientUtils extends HttpClientUtils{
     /**
 	 * 
 	 * @description ： 使用apache HttpClient 组件进行post方式的请求；Content-Type 为  application/json
-	 * @author ： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
+	 * @author ： <a href="mailto:hnxyhcwdl1003@163.com">vindell</a>
 	 * @date ：2015-6-24 上午09:13:35
 	 * @param baseURL
 	 * @param paramsMap
@@ -253,7 +253,7 @@ public abstract class HttpsClientUtils extends HttpClientUtils{
     /**
 	 * 
 	 * @description ： 使用apache HttpClient 组件进行post方式的请求；Content-Type 为  application/json
-	 * @author ： <a href="mailto:hnxyhcwdl1003@163.com">wandalong</a>
+	 * @author ： <a href="mailto:hnxyhcwdl1003@163.com">vindell</a>
 	 * @date ：2015-6-24 上午09:13:35
 	 * @param baseURL
 	 * @param paramsMap
