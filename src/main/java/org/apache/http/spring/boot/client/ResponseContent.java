@@ -4,12 +4,8 @@ import java.io.InputStream;
 import java.util.Map;
 
 /**
- * 
- * @className	： ResponseContent
- * @description	： 封装HttpClient返回数据
+ * 封装HttpClient返回数据
  * @author 		： <a href="https://github.com/vindell">vindell</a>
- * @date		： 2017年12月3日 下午4:22:38
- * @version 	V1.0
  */
 public class ResponseContent {
 

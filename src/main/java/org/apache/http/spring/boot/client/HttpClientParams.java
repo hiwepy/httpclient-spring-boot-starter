@@ -80,17 +80,6 @@ public enum HttpClientParams {
 	 * Socket读数据的超时时间，即从服务器获取响应数据需要等待的时间；单位毫秒，默认5000
 	 */
 	HTTP_REQUEST_SOCKET_TIMEOUT("http.request.socket_timeout", "5000"),
-	
-	/**
-	 * 定时清除失效连接心跳线程延时启动时间；单位毫秒，默认5000
-	 */
-	HTTP_HEARTBEAT_INITIALDELAY("http.heartbeat.initialDelay", "5000"),
-	
-	/**
-	 * 定时清除失效连接心跳线程执行周期；单位毫秒，默认5000
-	 */
-	HTTP_HEARTBEAT_PERIOD("http.heartbeat.period", "5000"),
-	
 	/**
 	 * SSL证书类型；TLS,SSL,SSLv2
 	 */
