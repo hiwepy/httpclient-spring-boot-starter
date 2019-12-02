@@ -1,4 +1,4 @@
-# spring-boot-starter-httpclient
+# httpclient-spring-boot-starter
 
 
 ### 说明
@@ -14,7 +14,7 @@
 ``` xml
 <dependency>
 	<groupId>${project.groupId}</groupId>
-	<artifactId>spring-boot-starter-httpclient</artifactId>
+	<artifactId>httpclient-spring-boot-starter</artifactId>
 	<version>${project.version}</version>
 </dependency>
 ```
