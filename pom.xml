@@ -374,8 +374,8 @@
 		<commons-net.version>3.6</commons-net.version>
 		<commons-not-yet-ssl.version>0.3.9</commons-not-yet-ssl.version>
 		<dom4j.version>2.1.1</dom4j.version>
-		<fastjson.version>1.2.61</fastjson.version>
-		<guava.version>26.0-jre</guava.version>
+		<fastjson.version>1.2.75</fastjson.version>
+		<guava.version>30.0-jre</guava.version>
 		<metrics.version>4.0.3</metrics.version>
 		<xstream.version>1.4.11.1</xstream.version>
 	</properties>
