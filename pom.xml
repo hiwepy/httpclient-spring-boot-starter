@@ -445,6 +445,7 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
+			<version>2.0.13</version>
 		</dependency>
 
 		<!-- Core starter, including auto-configuration support, logging and YAML -->
@@ -492,6 +493,7 @@
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient-cache</artifactId>
+			<version>4.5.14</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
