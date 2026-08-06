@@ -316,6 +316,9 @@
                 </activation>
             <properties>
                 <additionalparam>-Xdoclint:none</additionalparam>
+                <dropwizard-metrics.version>4.2.39</dropwizard-metrics.version>
+                <httpclient.version>4.5.14</httpclient.version>
+                <slf4j.version>2.0.18</slf4j.version>
             </properties>
         </profile>
         <profile>
