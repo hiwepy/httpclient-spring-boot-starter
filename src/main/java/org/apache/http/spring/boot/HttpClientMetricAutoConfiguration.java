@@ -52,19 +52,28 @@ import com.codahale.metrics.httpclient.HttpClientMetricNameStrategy;
 import com.codahale.metrics.httpclient.InstrumentedHttpClientConnectionManager;
 import com.codahale.metrics.httpclient.InstrumentedHttpRequestExecutor;
 
+/**
+ * Optional Dropwizard Metrics-backed auto-configuration that instruments the HttpClient connection
+ * manager and request executor, activated when {@code httpclient.metrics.enabled=true} and the
+ * Metrics library is on the classpath.
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @Configuration
 @ConditionalOnClass({ MetricRegistry.class, HttpRequestExecutor.class, InstrumentedHttpRequestExecutor.class })
 @ConditionalOnProperty(prefix = HttpClientMetricProperties.PREFIX, value = "enabled", havingValue = "true")
 @AutoConfigureAfter(HttpClientDependsOnAutoConfiguration.class)
 @EnableConfigurationProperties(value = { HttpClientManagerProperties.class, HttpClientMetricProperties.class })
 public class HttpClientMetricAutoConfiguration {
-	
+
+	/** Provide a Dropwizard {@link MetricRegistry} unless one already exists. @return a new MetricRegistry */
 	@Bean
 	@ConditionalOnMissingBean(MetricRegistry.class)
 	public MetricRegistry metricsRegistry() {
 		return new MetricRegistry();
 	}
 
+	/** Provide a default {@link HttpClientMetricNameStrategy} that namespaces metrics by HttpClient and name unless one already exists. @return a metric name strategy */
 	@Bean
 	@ConditionalOnMissingBean
 	public HttpClientMetricNameStrategy metricNameStrategy() {
@@ -75,14 +84,34 @@ public class HttpClientMetricAutoConfiguration {
 			}
 		};
 	}
-	
+
+	/** Provide a Dropwizard-instrumented {@link HttpRequestExecutor} that records per-request metrics. @param metricsRegistry metric registry @param metricNameStrategy metric name strategy @param properties metric properties @return an InstrumentedHttpRequestExecutor */
 	@Bean
 	public HttpRequestExecutor httpRequestExecutor(MetricRegistry metricsRegistry,
 			HttpClientMetricNameStrategy metricNameStrategy, HttpClientMetricProperties properties) {
 		return new InstrumentedHttpRequestExecutor(metricsRegistry, metricNameStrategy, properties.getName(),
 				properties.getWaitForContinue());
 	}
-	
+
+	/**
+	 * Build an instrumented {@link HttpClientConnectionManagerBuilder} that produces a Dropwizard-metrics
+	 * aware pooling connection manager, overriding the default builder produced by
+	 * {@code HttpClientBuilderAutoConfiguration}.
+	 * @param connectionConfig default connection configuration
+	 * @param requestConfig default request configuration
+	 * @param socketConfig default socket configuration
+	 * @param dnsResolver DNS resolver
+	 * @param keepAliveStrategy keep-alive strategy
+	 * @param publicSuffixMatcher public suffix matcher
+	 * @param schemePortResolver scheme port resolver
+	 * @param serviceUnavailStrategy service-unavailable retry strategy
+	 * @param hostnameVerifier SSL hostname verifier
+	 * @param trustManager X509 trust manager
+	 * @param properties connection manager properties
+	 * @param metricsRegistry metric registry
+	 * @param metricProperties metric properties
+	 * @return an instrumented connection manager builder
+	 */
 	@Bean
 	public HttpClientConnectionManagerBuilder connectionManagerBuilder(
 			ConnectionConfig connectionConfig,
@@ -108,22 +137,29 @@ public class HttpClientMetricAutoConfiguration {
 	}
 	
 
+	/**
+	 * Connection manager builder that produces Dropwizard-instrumented
+	 * {@link InstrumentedHttpClientConnectionManager} instances.
+	 */
 	static class InstrumentedHttpClientConnectionManagerBuilder extends HttpClientConnectionManagerBuilder {
 
 		private final MetricRegistry metricsRegistry;
 		private final String name;
 
+		/** Create a new instrumented connection manager builder. @param metricsRegistry metric registry @param name metric name @return a new builder */
 		public static InstrumentedHttpClientConnectionManagerBuilder create(MetricRegistry metricsRegistry,
 				String name) {
 			return new InstrumentedHttpClientConnectionManagerBuilder(metricsRegistry, name);
 		}
 
+		/** Construct an instrumented connection manager builder. @param metricsRegistry metric registry @param name metric name */
 		protected InstrumentedHttpClientConnectionManagerBuilder(MetricRegistry metricsRegistry, String name) {
 			super();
 			this.metricsRegistry = metricsRegistry;
 			this.name = name;
 		}
 
+		/** Create the underlying instrumented pooling connection manager. @param socketFactoryRegistry socket factory registry @param connFactory connection factory @param schemePortResolver scheme port resolver @param dnsResolver DNS resolver @param connTimeToLive connection time-to-live @param connTimeToLiveTimeUnit time-to-live unit @return an InstrumentedHttpClientConnectionManager */
 		@Override
 		protected PoolingHttpClientConnectionManager instance(Registry<ConnectionSocketFactory> socketFactoryRegistry,
 				HttpConnectionFactory<HttpRoute, ManagedHttpClientConnection> connFactory,

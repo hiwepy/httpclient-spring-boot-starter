@@ -18,26 +18,26 @@ package org.apache.http.spring.boot.client;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * TODO
- * 
+ * Configuration properties for HttpClient sockets, bound to the {@code httpclient.socket.*} prefix.
+ * <p>Maps directly to {@link org.apache.http.config.SocketConfig}.</p>
  * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 @ConfigurationProperties(prefix = HttpClientSocketProperties.PREFIX)
 public class HttpClientSocketProperties {
 
 	public final static String PREFIX = "httpclient.socket";
-	
-	/**
-	 * 连接读取数据超时时间；单位毫秒，默认5000
-	 */
+
+	/** Socket read timeout in milliseconds; default is 5000. */
 	private int soTimeout = Integer.parseInt(HttpClientParams.HTTP_SOCKET_SO_TIMEOUT.getDefault());
 	private boolean soReuseAddress;
 	private int soLinger;
 	private boolean soKeepAlive;
 	/**
-	 * 设置httpclient是否使用NoDelay策略。如果启用了NoDelay策略，httpclient和站点之间传输数据时将会尽可能及时地将发送缓冲区中的数据发送出去、
-	 * 而不考虑网络带宽的利用率，这个策略适合对实时性要求高的场景。而禁用了这个策略之后，数据传输会采用Nagle's
-	 * algorithm发送数据，该算法会充分顾及带宽的利用率，而不是数据传输的实时性
+	 * Whether HttpClient uses the NoDelay (TCP_NODELAY) strategy. When enabled, data is flushed from the
+	 * send buffer as early as possible at the expense of bandwidth utilisation, which suits
+	 * latency-sensitive scenarios. When disabled, data is sent using Nagle's algorithm, which favours
+	 * bandwidth utilisation over latency.
 	 */
 	private boolean tcpNoDelay = Boolean.parseBoolean(HttpClientParams.HTTP_SOCKET_TCPNODELAY.getDefault());
 	private int sndBufSize;

@@ -53,12 +53,21 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.util.CollectionUtils;
 
 
+/**
+ * Auto-configuration that assembles the {@link HttpClientBuilder}, the underlying
+ * {@link HttpClientConnectionManager} and the resulting {@link CloseableHttpClient} bean, wiring together
+ * the dependency beans produced by {@link HttpClientDependsOnAutoConfiguration} and (optionally)
+ * {@link HttpClientMetricAutoConfiguration}.
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @Configuration
 @ConditionalOnClass({ CloseableHttpClient.class, HttpClientConnectionManager.class })
 @AutoConfigureAfter({HttpClientDependsOnAutoConfiguration.class, HttpClientMetricAutoConfiguration.class})
 @EnableConfigurationProperties(HttpClientProperties.class)
 public class HttpClientBuilderAutoConfiguration {
-	
+
+	/** Create the {@link HttpClientConnectionManagerBuilder} bean unless one is already defined. @param connectionConfig default connection configuration @param requestConfig default request configuration @param socketConfig default socket configuration @param dnsResolver DNS resolver @param keepAliveStrategy keep-alive strategy @param publicSuffixMatcher public suffix matcher @param schemePortResolver scheme port resolver @param serviceUnavailStrategy service-unavailable retry strategy @param hostnameVerifier SSL hostname verifier @param trustManager X509 trust manager @param properties connection manager properties @return a new connection manager builder */
 	@Bean
 	@ConditionalOnMissingBean(HttpClientConnectionManagerBuilder.class)
 	public HttpClientConnectionManagerBuilder connectionManagerBuilder(
@@ -82,12 +91,46 @@ public class HttpClientBuilderAutoConfiguration {
 				.setPublicSuffixMatcher(publicSuffixMatcher);
 	}
 	
+	/** Build the {@link HttpClientConnectionManager} from the provided builder unless one already exists. @param connectionManagerBuilder the connection manager builder @return a built connection manager */
 	@Bean
 	@ConditionalOnMissingBean(HttpClientConnectionManager.class)
 	public HttpClientConnectionManager connectionManager(HttpClientConnectionManagerBuilder connectionManagerBuilder) {
     	return connectionManagerBuilder.build();
 	}
-	
+
+	/**
+	 * Build the fully configured {@link HttpClientBuilder} from the wired dependency beans and the
+	 * {@link HttpClientProperties} feature toggles.
+	 * @param requestFirstInterceptors interceptors to add first to requests
+	 * @param requestLastInterceptors interceptors to add last to requests
+	 * @param responseFirstInterceptors interceptors to add first to responses
+	 * @param responseLastInterceptors interceptors to add last to responses
+	 * @param connectionBackoffStrategy connection backoff strategy
+	 * @param connectionManager connection manager
+	 * @param reuseStrategy connection reuse strategy
+	 * @param connectionConfig default connection config
+	 * @param cookieStore cookie store
+	 * @param credentialsProvider optional credentials provider
+	 * @param requestConfig default request config
+	 * @param socketConfig default socket config
+	 * @param dnsResolver DNS resolver
+	 * @param keepAliveStrategy keep-alive strategy
+	 * @param proxyAuthStrategy proxy authentication strategy provider
+	 * @param publicSuffixMatcher public suffix matcher
+	 * @param redirectStrategy redirect strategy
+	 * @param httpRequestExecutor request executor
+	 * @param retryHandler request retry handler
+	 * @param schemePortResolver scheme port resolver
+	 * @param serviceUnavailStrategy service-unavailable retry strategy
+	 * @param targetAuthStrategy target authentication strategy provider
+	 * @param userTokenHandler user token handler
+	 * @param sslContext SSL context
+	 * @param hostnameVerifier SSL hostname verifier
+	 * @param sslSocketFactory layered SSL socket factory
+	 * @param properties HttpClient properties
+	 * @param managerProperties connection manager properties
+	 * @return a configured HttpClientBuilder
+	 */
 	@Bean
 	public HttpClientBuilder httpClientBuilder(
 			@RequestFirst ObjectProvider<HttpRequestInterceptor> requestFirstInterceptors,
@@ -210,12 +253,21 @@ public class HttpClientBuilderAutoConfiguration {
 		return clientBuilder;
 	}
 	
+	/** Build the {@link CloseableHttpClient} from the configured builder unless one already exists. @param httpClientBuilder the HttpClient builder @return a built closeable HttpClient */
 	@Bean
 	@ConditionalOnMissingBean(CloseableHttpClient.class)
 	public CloseableHttpClient closeableHttpClient(HttpClientBuilder httpClientBuilder) {
     	return httpClientBuilder.build();
-	}
-	
+    }
+
+	/**
+	 * Create a Spring {@link HttpComponentsClientHttpRequestFactory} backed by the configured HttpClient,
+	 * applying request timeouts and the buffer-request-body flag.
+	 * @param httpClientBuilder the HttpClient builder
+	 * @param properties HttpClient properties
+	 * @param requestProperties request properties
+	 * @return a HttpComponents-based client request factory
+	 */
 	@Bean
 	public HttpComponentsClientHttpRequestFactory httpComponentsClientHttpRequestFactory(
 			HttpClientBuilder httpClientBuilder,

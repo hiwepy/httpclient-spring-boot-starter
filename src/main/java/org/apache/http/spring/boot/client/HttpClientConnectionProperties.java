@@ -22,19 +22,25 @@ import org.apache.http.config.MessageConstraints;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * TODO
- * 
+ * Configuration properties for the HttpClient connection layer, bound to the {@code httpclient.connection.*}
+ * prefix. Captures buffer size, fragment size hint, character set, coding-error actions and message
+ * constraints used when building the {@link org.apache.http.config.ConnectionConfig}.
  * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 @ConfigurationProperties(prefix = HttpClientConnectionProperties.PREFIX)
 public class HttpClientConnectionProperties {
 
 	public final static String PREFIX = "httpclient.connection";
 
+	/**
+	 * Enumeration mirroring {@link java.nio.charset.CodingErrorAction} values, resolved case-insensitively
+	 * when binding connection properties.
+	 */
 	public static enum CodingErrorActionEnum {
 
-		IGNORE("IGNORE"), 
-		REPLACE("REPLACE"), 
+		IGNORE("IGNORE"),
+		REPLACE("REPLACE"),
 		REPORT("REPORT");
 
 		private final String name;
@@ -43,18 +49,22 @@ public class HttpClientConnectionProperties {
 			this.name = name;
 		}
 
+		/** Return the string value of this action. @return the action name */
 		public String value() {
 			return name;
 		}
-		
+
+		/** Compare this enum to another instance. @param name the enum to compare @return true if equal */
 		public boolean equals(CodingErrorActionEnum name){
 			return this.compareTo(name) == 0;
 		}
-		
+
+		/** Compare this enum to the action resolved from the given string. @param name the action name @return true if equal */
 		public boolean equals(String name){
 			return this.compareTo(CodingErrorActionEnum.valueOfIgnoreCase(name)) == 0;
 		}
-		
+
+		/** Resolve an action case-insensitively by name. @param name the action name @return the matching enum */
 		public static CodingErrorActionEnum valueOfIgnoreCase(String name) {
 			for (CodingErrorActionEnum type : CodingErrorActionEnum.values()) {
 				if(type.value().equalsIgnoreCase(name)) {
@@ -63,7 +73,7 @@ public class HttpClientConnectionProperties {
 			}
 	    	throw new NoSuchElementException("Cannot found CodingErrorAction with key '" + name + "'.");
 	    }
-		
+
 	}
 	
 	private int bufferSize;

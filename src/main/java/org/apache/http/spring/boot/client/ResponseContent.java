@@ -4,8 +4,10 @@ import java.io.InputStream;
 import java.util.Map;
 
 /**
- * 封装HttpClient返回数据
+ * Encapsulates the data returned by an HttpClient request, including status code, content bytes/text,
+ * content type, headers and the underlying input stream.
  * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 public class ResponseContent {
 

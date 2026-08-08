@@ -23,6 +23,12 @@ import java.lang.annotation.Target;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 
+/**
+ * Spring {@link Qualifier} marker for selecting the {@link org.apache.http.HttpResponseInterceptor}
+ * beans that should be added first to the response pipeline.
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @Target({ ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER, ElementType.TYPE,
 	ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)

@@ -6,23 +6,27 @@ import java.util.concurrent.TimeUnit;
 import org.apache.http.HttpHost;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+/**
+ * Configuration properties for the HttpClient connection manager, bound to the {@code httpclient.manager.*}
+ * prefix. Covers connect and socket timeouts, SSL protocol, idle/expired connection eviction, pool sizing,
+ * connection time-to-live and feature toggles that mirror {@link org.apache.http.impl.client.HttpClientBuilder}.
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @ConfigurationProperties(prefix = HttpClientManagerProperties.PREFIX)
 public class HttpClientManagerProperties {
 
 	public final static String PREFIX = "httpclient.manager";
 	/**
-	 * 通过网络与服务器建立连接的超时时间。Httpclient包中通过一个异步线程去创建与服务器的socket连接，这就是该socket连接的超时时间，此处默认为5秒
-	 * 决定了直到连接建立时的毫秒级超时时间。超时时间的值为0解释为一个无限大的时间。这个参数期望得到一个java.lang.Integer类型的值。
-	 * 如果这个参数没有被设置，连接操作将不会超时（无限大的超时时间）；单位毫秒，默认5000
+	 * Timeout for establishing the network connection to the server. HttpClient creates the socket
+	 * connection asynchronously, and this is the connection timeout in milliseconds; default is 5000.
+	 * A value of 0 is interpreted as an infinite timeout. Expected value type is {@code java.lang.Integer}.
+	 * If unset, the connection operation will not time out (infinite timeout).
 	 */
 	protected int connectTimeout = Integer.parseInt(HttpClientParams.HTTP_REQUEST_CONNECT_TIMEOUT.getDefault());
-	/**
-	 * Socket读数据的超时时间，即从服务器获取响应数据需要等待的时间；单位毫秒，默认5000
-	 */
+	/** Socket read timeout, i.e. how long to wait when receiving response data from the server, in milliseconds; default is 5000. */
 	protected int socketTimeout = Integer.parseInt(HttpClientParams.HTTP_REQUEST_SOCKET_TIMEOUT.getDefault());
-	/**
-	 * SSL证书类型；TLS,SSL,SSLv2
-	 */
+	/** SSL certificate protocol type; allowed values are TLS, SSL, SSLv2. */
 	protected String protocol = HttpClientParams.HTTP_SSL_PROTOCOL.getDefault();
 	private boolean evictExpiredConnections;
     private boolean evictIdleConnections;

@@ -4,85 +4,75 @@ import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
 
+/**
+ * Enumeration of well-known HttpClient configuration parameter keys together with their default values.
+ * <p>Each constant exposes the property name and a default string value used across the
+ * {@code httpclient.*} configuration properties.</p>
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 public enum HttpClientParams {
-	
-	/**
-	 * 是否使用连接池
-	 */
+
+	/** Whether to use a connection pool. */
 	HTTP_CONNECTION_MANAGER("http.connection.manager", "false"),
-	 
-	/**
-	 * 保持连接池内的长连接时长,仅在使用连接池时有效，单位毫秒，默认30秒
-	 */
+
+	/** Duration to keep pooled connections alive, in milliseconds; only effective when using a connection pool. Default is 30 seconds. */
 	HTTP_CONNECTION_KEEPALIVE("http.connection.keepAlive", "30000"),
-	
-	/**
-	 * 连接池最大持有连接数;默认 20
-	 */
+
+	/** Maximum number of connections held by the connection pool; default is 20. */
 	HTTP_CONNECTION_MAX_POOLSIZE("http.connection.maxPoolSize", "20"),
-	
-	/**
-	 * http请求失败重试次数
-	 */
+
+	/** Number of retries on HTTP request failure. */
 	HTTP_CONNECTION_RETRY_TIME("http.connection.retryTime", "5"),
-	
+
 	/**
-	 * 最大请求行长度的限制。如果设置为一个正数，任何HTTP请求行超过这个限制将会引发java.io.IOException异常。
-	 * 负数或零将会关闭这个检查。这个参数期望得到一个java.lang.Integer类型的值。如果这个参数没有被设置，那么就不强制进行限制了。
+	 * Maximum length limit of the HTTP request line. If set to a positive number, any HTTP request line
+	 * exceeding this limit raises a {@code java.io.IOException}. A negative number or zero disables this
+	 * check. Expected value type is {@code java.lang.Integer}; unset means no limit is enforced.
 	 */
 	HTTP_CONNECTION_MAX_LINE_LENGTH("http.connection.max-line-length", "2000"),
-	
+
 	/**
-	 * 允许的最大HTTP头部信息数量。如果设置为一个正数，从数据流中获得的HTTP头部信息数量超过这个限制就会引发java.io.IOException异常。
-	 * 负数或零将会关闭这个检查。这个参数期望得到一个java.lang.Integer类型的值。如果这个参数没有被设置，那么就不强制进行限制了。
+	 * Maximum allowed number of HTTP headers. If set to a positive number, exceeding this limit when
+	 * reading headers from the stream raises a {@code java.io.IOException}. A negative number or zero
+	 * disables this check. Expected value type is {@code java.lang.Integer}; unset means no limit.
 	 */
 	HTTP_CONNECTION_MAX_HEADER_COUNT("http.connection.max-header-count", "200"),
-	
-	/**
-	 * 连接字符编码格式 可用值 UTF-8，US-ASCII，ISO-8859-1
-	 */
+
+	/** Connection character encoding; allowed values are UTF-8, US-ASCII, ISO-8859-1. */
 	HTTP_CONNECTION_CONFIG_CHARSET("http.connection.config-charset", StandardCharsets.UTF_8.toString()),
-	
-	/**
-	 * 是否禁用DNS查找；true | false, true will return localhost/127.0.0.1 for hostname/hostaddress, false will attempt dns lookup for hostname (default: false).
-	 */
+
+	/** Whether DNS lookups are disabled; {@code true} returns localhost/127.0.0.1 for host name/address, {@code false} attempts a real DNS lookup (default: false). */
 	HTTP_CONNECTION_DNS_LOOKUPS_DISABLED("http.connection.dns.lookups-disabled", "true"),
-	
-	/**
-	 * 是否关闭请求连接度量监控
-	 */
+
+	/** Whether request connection metric monitoring is disabled. */
 	HTTP_CONNECTION_METRICS_DISABLED("http.connection.metrics.disabled", "true"),
-	
-	/**
-	 * 度量监控对象名称
-	 */
+
+	/** Metric registry object name. */
 	HTTP_CONNECTION_METRICS_REGISTRYNAME("http.connection.metrics.registryName", "httpclient"),
-	
+
 	/**
-	 * 设置httpclient是否使用NoDelay策略。如果启用了NoDelay策略，httpclient和站点之间传输数据时将会尽可能及时地将发送缓冲区中的数据发送出去、
-	 * 而不考虑网络带宽的利用率，这个策略适合对实时性要求高的场景。而禁用了这个策略之后，数据传输会采用Nagle's algorithm发送数据，该算法会充分顾及带宽的利用率，而不是数据传输的实时性
+	 * Whether HttpClient uses the NoDelay (TCP_NODELAY) strategy. When enabled, data is flushed from the
+	 * send buffer as early as possible at the expense of bandwidth utilisation, which suits
+	 * latency-sensitive scenarios. When disabled, data is sent using Nagle's algorithm, which favours
+	 * bandwidth utilisation over latency.
 	 */
 	HTTP_SOCKET_TCPNODELAY("http.socket.tcpNoDelay", "true"),
-	
-	/**
-	 * 连接读取数据超时时间；单位毫秒，默认5000
-	 */
+
+	/** Socket read timeout in milliseconds; default is 5000. */
 	HTTP_SOCKET_SO_TIMEOUT("http.socket.so_timeout", "5000"),
-	
+
 	/**
-	 * 通过网络与服务器建立连接的超时时间。Httpclient包中通过一个异步线程去创建与服务器的socket连接，这就是该socket连接的超时时间，此处默认为5秒
-	 * 决定了直到连接建立时的毫秒级超时时间。超时时间的值为0解释为一个无限大的时间。这个参数期望得到一个java.lang.Integer类型的值。
-	 * 如果这个参数没有被设置，连接操作将不会超时（无限大的超时时间）；单位毫秒，默认5000
+	 * Timeout for establishing the network connection to the server. HttpClient creates the socket
+	 * connection asynchronously, and this is the connection timeout in milliseconds; default is 5000.
+	 * A value of 0 is interpreted as an infinite timeout. Expected value type is {@code java.lang.Integer}.
+	 * If unset, the connection operation will not time out (infinite timeout).
 	 */
 	HTTP_REQUEST_CONNECT_TIMEOUT("http.request.connect_timeout", "5000"),
-	
-	/**
-	 * Socket读数据的超时时间，即从服务器获取响应数据需要等待的时间；单位毫秒，默认5000
-	 */
+
+	/** Socket read timeout, i.e. how long to wait when receiving response data from the server, in milliseconds; default is 5000. */
 	HTTP_REQUEST_SOCKET_TIMEOUT("http.request.socket_timeout", "5000"),
-	/**
-	 * SSL证书类型；TLS,SSL,SSLv2
-	 */
+	/** SSL certificate protocol type; allowed values are TLS, SSL, SSLv2. */
 	HTTP_SSL_PROTOCOL("http.ssl.protocol", "TLS");
 	
 
@@ -94,14 +84,17 @@ public enum HttpClientParams {
 		this.defaultValue = defaultValue;
 	}
 
+	/** Return the property name of this parameter. @return the property name */
 	public String getName() {
 		return name;
 	}
 
+	/** Return the default value of this parameter. @return the default value */
 	public String getDefault() {
 		return defaultValue;
 	}
 
+	/** Resolve a parameter case-insensitively and override its default value. @param parameter the parameter name @param defaultValue the default value to apply @return the resolved parameter */
 	static HttpClientParams valueOfIgnoreCase(String parameter,String defaultValue) {
 		HttpClientParams parm = valueOf(parameter.toUpperCase(Locale.ENGLISH).trim());
 		parm.defaultValue = defaultValue;

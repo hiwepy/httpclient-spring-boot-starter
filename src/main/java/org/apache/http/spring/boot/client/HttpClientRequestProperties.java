@@ -22,8 +22,11 @@ import org.apache.http.HttpHost;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * TODO
+ * Configuration properties for HttpClient requests, bound to the {@code httpclient.request.*} prefix.
+ * <p>Maps directly to {@link org.apache.http.client.config.RequestConfig} plus retry-related settings
+ * consumed by the configured {@link org.apache.http.client.HttpRequestRetryHandler}.</p>
  * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 @ConfigurationProperties(prefix = HttpClientRequestProperties.PREFIX)
 public class HttpClientRequestProperties {
@@ -43,15 +46,11 @@ public class HttpClientRequestProperties {
 	private Collection<String> targetPreferredAuthSchemes;
 	private Collection<String> proxyPreferredAuthSchemes;
 	private int connectionRequestTimeout;
-	/**
-	 * 连接超时时间(单位毫秒)
-	 */
+	/** Connection timeout in milliseconds. */
 	private int connectTimeout;
 	private int socketTimeout;
 	private boolean contentCompressionEnabled;
-	/**
-	 * http请求失败重试次数
-	 */
+	/** Number of retries on HTTP request failure. */
 	protected int retryCount = Integer.parseInt(HttpClientParams.HTTP_CONNECTION_RETRY_TIME.getDefault());
 	protected boolean requestSentRetryEnabled = true;
 	
