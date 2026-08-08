@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * 封装HttpClient返回数据
- * @author 		： <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author [@Loong Wan](https://github.com/loong10k)
  */
 public class ResponseContent {
 
