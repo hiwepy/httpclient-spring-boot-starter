@@ -23,7 +23,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * TODO
- * @author ： <a href="https://github.com/hiwepy">hiwepy</a>
+ * @author [@Loong Wan](https://github.com/loong10k)
  */
 @ConfigurationProperties(prefix = HttpClientRequestProperties.PREFIX)
 public class HttpClientRequestProperties {
