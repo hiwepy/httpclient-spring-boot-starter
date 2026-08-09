@@ -1,35 +1,19 @@
-/*
- * Copyright (c) 2018, hiwepy (https://github.com/hiwepy).
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
- */
 package org.apache.http.spring.boot.client;
 
+import java.net.InetAddress;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
+import org.apache.http.HttpHost;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * Unit tests for {{ @link HttpClientRequestProperties }}.
- *
- * <p>Verifies default values, getters/setters and POJO contract.</p>
- *
- * @author [@Loong Wan](https://github.com/loong10k)
- * @since 1.0.0
- */
 @DisplayName("HttpClientRequestProperties Tests")
 class HttpClientRequestPropertiesTest {
+
     @Test
     @DisplayName("Default constructor creates non-null instance")
     void testDefaultInstance() {
@@ -38,162 +22,150 @@ class HttpClientRequestPropertiesTest {
     }
 
     @Test
-    @DisplayName("Field 'expectContinueEnabled' can be set and read")
-    void testExpectContinueEnabledField() {
+    @DisplayName("expectContinueEnabled getter/setter")
+    void testExpectContinueEnabled() {
         HttpClientRequestProperties props = new HttpClientRequestProperties();
-        // Use reflection to set private field (covers all fields including those without setters)
-        try {
-            java.lang.reflect.Field f = HttpClientRequestProperties.class.getDeclaredField("expectContinueEnabled");
-            f.setAccessible(true);
-            f.set(props, true);
-            Object value = f.get(props);
-            assertThat(value).isNotNull();
-        } catch (Exception e) {
-            // Field may have a more complex type; skip silently
-        }
+        props.setExpectContinueEnabled(true);
+        assertThat(props.isExpectContinueEnabled()).isTrue();
     }
 
     @Test
-    @DisplayName("Field 'staleConnectionCheckEnabled' can be set and read")
-    void testStaleConnectionCheckEnabledField() {
+    @DisplayName("proxy getter/setter")
+    void testProxy() {
         HttpClientRequestProperties props = new HttpClientRequestProperties();
-        // Use reflection to set private field (covers all fields including those without setters)
-        try {
-            java.lang.reflect.Field f = HttpClientRequestProperties.class.getDeclaredField("staleConnectionCheckEnabled");
-            f.setAccessible(true);
-            f.set(props, true);
-            Object value = f.get(props);
-            assertThat(value).isNotNull();
-        } catch (Exception e) {
-            // Field may have a more complex type; skip silently
-        }
+        HttpHost proxy = new HttpHost("proxy.example.com", 8080);
+        props.setProxy(proxy);
+        assertThat(props.getProxy()).isEqualTo(proxy);
     }
 
     @Test
-    @DisplayName("Field 'cookieSpec' can be set and read")
-    void testCookieSpecField() {
+    @DisplayName("staleConnectionCheckEnabled getter/setter")
+    void testStaleConnectionCheckEnabled() {
         HttpClientRequestProperties props = new HttpClientRequestProperties();
-        // Use reflection to set private field (covers all fields including those without setters)
-        try {
-            java.lang.reflect.Field f = HttpClientRequestProperties.class.getDeclaredField("cookieSpec");
-            f.setAccessible(true);
-            f.set(props, "test");
-            Object value = f.get(props);
-            assertThat(value).isNotNull();
-        } catch (Exception e) {
-            // Field may have a more complex type; skip silently
-        }
+        props.setStaleConnectionCheckEnabled(true);
+        assertThat(props.isStaleConnectionCheckEnabled()).isTrue();
     }
 
     @Test
-    @DisplayName("Field 'redirectsEnabled' can be set and read")
-    void testRedirectsEnabledField() {
+    @DisplayName("cookieSpec getter/setter")
+    void testCookieSpec() {
         HttpClientRequestProperties props = new HttpClientRequestProperties();
-        // Use reflection to set private field (covers all fields including those without setters)
-        try {
-            java.lang.reflect.Field f = HttpClientRequestProperties.class.getDeclaredField("redirectsEnabled");
-            f.setAccessible(true);
-            f.set(props, true);
-            Object value = f.get(props);
-            assertThat(value).isNotNull();
-        } catch (Exception e) {
-            // Field may have a more complex type; skip silently
-        }
+        props.setCookieSpec("standard");
+        assertThat(props.getCookieSpec()).isEqualTo("standard");
     }
 
     @Test
-    @DisplayName("Field 'relativeRedirectsAllowed' can be set and read")
-    void testRelativeRedirectsAllowedField() {
+    @DisplayName("redirectsEnabled getter/setter")
+    void testRedirectsEnabled() {
         HttpClientRequestProperties props = new HttpClientRequestProperties();
-        // Use reflection to set private field (covers all fields including those without setters)
-        try {
-            java.lang.reflect.Field f = HttpClientRequestProperties.class.getDeclaredField("relativeRedirectsAllowed");
-            f.setAccessible(true);
-            f.set(props, true);
-            Object value = f.get(props);
-            assertThat(value).isNotNull();
-        } catch (Exception e) {
-            // Field may have a more complex type; skip silently
-        }
+        props.setRedirectsEnabled(false);
+        assertThat(props.isRedirectsEnabled()).isFalse();
     }
 
     @Test
-    @DisplayName("Field 'circularRedirectsAllowed' can be set and read")
-    void testCircularRedirectsAllowedField() {
+    @DisplayName("relativeRedirectsAllowed getter/setter")
+    void testRelativeRedirectsAllowed() {
         HttpClientRequestProperties props = new HttpClientRequestProperties();
-        // Use reflection to set private field (covers all fields including those without setters)
-        try {
-            java.lang.reflect.Field f = HttpClientRequestProperties.class.getDeclaredField("circularRedirectsAllowed");
-            f.setAccessible(true);
-            f.set(props, true);
-            Object value = f.get(props);
-            assertThat(value).isNotNull();
-        } catch (Exception e) {
-            // Field may have a more complex type; skip silently
-        }
+        props.setRelativeRedirectsAllowed(false);
+        assertThat(props.isRelativeRedirectsAllowed()).isFalse();
     }
 
     @Test
-    @DisplayName("Field 'maxRedirects' can be set and read")
-    void testMaxRedirectsField() {
+    @DisplayName("circularRedirectsAllowed getter/setter")
+    void testCircularRedirectsAllowed() {
         HttpClientRequestProperties props = new HttpClientRequestProperties();
-        // Use reflection to set private field (covers all fields including those without setters)
-        try {
-            java.lang.reflect.Field f = HttpClientRequestProperties.class.getDeclaredField("maxRedirects");
-            f.setAccessible(true);
-            f.set(props, 42);
-            Object value = f.get(props);
-            assertThat(value).isNotNull();
-        } catch (Exception e) {
-            // Field may have a more complex type; skip silently
-        }
+        props.setCircularRedirectsAllowed(true);
+        assertThat(props.isCircularRedirectsAllowed()).isTrue();
     }
 
     @Test
-    @DisplayName("Field 'authenticationEnabled' can be set and read")
-    void testAuthenticationEnabledField() {
+    @DisplayName("maxRedirects getter/setter")
+    void testMaxRedirects() {
         HttpClientRequestProperties props = new HttpClientRequestProperties();
-        // Use reflection to set private field (covers all fields including those without setters)
-        try {
-            java.lang.reflect.Field f = HttpClientRequestProperties.class.getDeclaredField("authenticationEnabled");
-            f.setAccessible(true);
-            f.set(props, true);
-            Object value = f.get(props);
-            assertThat(value).isNotNull();
-        } catch (Exception e) {
-            // Field may have a more complex type; skip silently
-        }
+        props.setMaxRedirects(5);
+        assertThat(props.getMaxRedirects()).isEqualTo(5);
     }
 
     @Test
-    @DisplayName("Field 'connectionRequestTimeout' can be set and read")
-    void testConnectionRequestTimeoutField() {
+    @DisplayName("authenticationEnabled getter/setter")
+    void testAuthenticationEnabled() {
         HttpClientRequestProperties props = new HttpClientRequestProperties();
-        // Use reflection to set private field (covers all fields including those without setters)
-        try {
-            java.lang.reflect.Field f = HttpClientRequestProperties.class.getDeclaredField("connectionRequestTimeout");
-            f.setAccessible(true);
-            f.set(props, 42);
-            Object value = f.get(props);
-            assertThat(value).isNotNull();
-        } catch (Exception e) {
-            // Field may have a more complex type; skip silently
-        }
+        props.setAuthenticationEnabled(false);
+        assertThat(props.isAuthenticationEnabled()).isFalse();
     }
 
     @Test
-    @DisplayName("Field 'connectTimeout' can be set and read")
-    void testConnectTimeoutField() {
+    @DisplayName("targetPreferredAuthSchemes getter/setter")
+    void testTargetPreferredAuthSchemes() {
         HttpClientRequestProperties props = new HttpClientRequestProperties();
-        // Use reflection to set private field (covers all fields including those without setters)
-        try {
-            java.lang.reflect.Field f = HttpClientRequestProperties.class.getDeclaredField("connectTimeout");
-            f.setAccessible(true);
-            f.set(props, 42);
-            Object value = f.get(props);
-            assertThat(value).isNotNull();
-        } catch (Exception e) {
-            // Field may have a more complex type; skip silently
-        }
+        Collection<String> schemes = Arrays.asList("NTLM", "Digest");
+        props.setTargetPreferredAuthSchemes(schemes);
+        assertThat(props.getTargetPreferredAuthSchemes()).containsExactly("NTLM", "Digest");
+    }
+
+    @Test
+    @DisplayName("proxyPreferredAuthSchemes getter/setter")
+    void testProxyPreferredAuthSchemes() {
+        HttpClientRequestProperties props = new HttpClientRequestProperties();
+        Collection<String> schemes = Collections.singletonList("Basic");
+        props.setProxyPreferredAuthSchemes(schemes);
+        assertThat(props.getProxyPreferredAuthSchemes()).containsExactly("Basic");
+    }
+
+    @Test
+    @DisplayName("connectionRequestTimeout getter/setter")
+    void testConnectionRequestTimeout() {
+        HttpClientRequestProperties props = new HttpClientRequestProperties();
+        props.setConnectionRequestTimeout(3000);
+        assertThat(props.getConnectionRequestTimeout()).isEqualTo(3000);
+    }
+
+    @Test
+    @DisplayName("connectTimeout getter/setter")
+    void testConnectTimeout() {
+        HttpClientRequestProperties props = new HttpClientRequestProperties();
+        props.setConnectTimeout(5000);
+        assertThat(props.getConnectTimeout()).isEqualTo(5000);
+    }
+
+    @Test
+    @DisplayName("socketTimeout getter/setter")
+    void testSocketTimeout() {
+        HttpClientRequestProperties props = new HttpClientRequestProperties();
+        props.setSocketTimeout(10000);
+        assertThat(props.getSocketTimeout()).isEqualTo(10000);
+    }
+
+    @Test
+    @DisplayName("contentCompressionEnabled getter/setter")
+    void testContentCompressionEnabled() {
+        HttpClientRequestProperties props = new HttpClientRequestProperties();
+        props.setContentCompressionEnabled(false);
+        assertThat(props.isContentCompressionEnabled()).isFalse();
+    }
+
+    @Test
+    @DisplayName("retryCount getter/setter")
+    void testRetryCount() {
+        HttpClientRequestProperties props = new HttpClientRequestProperties();
+        props.setRetryCount(3);
+        assertThat(props.getRetryCount()).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("requestSentRetryEnabled getter/setter")
+    void testRequestSentRetryEnabled() {
+        HttpClientRequestProperties props = new HttpClientRequestProperties();
+        props.setRequestSentRetryEnabled(true);
+        assertThat(props.isRequestSentRetryEnabled()).isTrue();
+    }
+
+    @Test
+    @DisplayName("localAddress getter/setter")
+    void testLocalAddress() throws Exception {
+        HttpClientRequestProperties props = new HttpClientRequestProperties();
+        InetAddress addr = InetAddress.getByName("127.0.0.1");
+        props.setLocalAddress(addr);
+        assertThat(props.getLocalAddress()).isEqualTo(addr);
     }
 }

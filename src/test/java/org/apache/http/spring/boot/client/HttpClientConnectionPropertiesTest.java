@@ -15,6 +15,11 @@
  */
 package org.apache.http.spring.boot.client;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+
+import org.apache.http.config.MessageConstraints;
+import org.apache.http.spring.boot.client.HttpClientConnectionProperties.CodingErrorActionEnum;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,13 +28,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Unit tests for {{ @link HttpClientConnectionProperties }}.
  *
- * <p>Verifies default values, getters/setters and POJO contract.</p>
- *
  * @author [@Loong Wan](https://github.com/loong10k)
  * @since 1.0.0
  */
 @DisplayName("HttpClientConnectionProperties Tests")
 class HttpClientConnectionPropertiesTest {
+
     @Test
     @DisplayName("Default constructor creates non-null instance")
     void testDefaultInstance() {
@@ -38,34 +42,94 @@ class HttpClientConnectionPropertiesTest {
     }
 
     @Test
-    @DisplayName("Field 'bufferSize' can be set and read")
-    void testBufferSizeField() {
+    @DisplayName("bufferSize getter/setter")
+    void testBufferSize() {
         HttpClientConnectionProperties props = new HttpClientConnectionProperties();
-        // Use reflection to set private field (covers all fields including those without setters)
-        try {
-            java.lang.reflect.Field f = HttpClientConnectionProperties.class.getDeclaredField("bufferSize");
-            f.setAccessible(true);
-            f.set(props, 42);
-            Object value = f.get(props);
-            assertThat(value).isNotNull();
-        } catch (Exception e) {
-            // Field may have a more complex type; skip silently
-        }
+        assertThat(props.getBufferSize()).isEqualTo(0);
+        props.setBufferSize(4096);
+        assertThat(props.getBufferSize()).isEqualTo(4096);
     }
 
     @Test
-    @DisplayName("Field 'fragmentSizeHint' can be set and read")
-    void testFragmentSizeHintField() {
+    @DisplayName("fragmentSizeHint getter/setter")
+    void testFragmentSizeHint() {
         HttpClientConnectionProperties props = new HttpClientConnectionProperties();
-        // Use reflection to set private field (covers all fields including those without setters)
-        try {
-            java.lang.reflect.Field f = HttpClientConnectionProperties.class.getDeclaredField("fragmentSizeHint");
-            f.setAccessible(true);
-            f.set(props, 42);
-            Object value = f.get(props);
-            assertThat(value).isNotNull();
-        } catch (Exception e) {
-            // Field may have a more complex type; skip silently
-        }
+        assertThat(props.getFragmentSizeHint()).isEqualTo(0);
+        props.setFragmentSizeHint(1024);
+        assertThat(props.getFragmentSizeHint()).isEqualTo(1024);
+    }
+
+    @Test
+    @DisplayName("charset getter/setter")
+    void testCharset() {
+        HttpClientConnectionProperties props = new HttpClientConnectionProperties();
+        assertThat(props.getCharset()).isNull();
+        props.setCharset(StandardCharsets.UTF_8);
+        assertThat(props.getCharset()).isEqualTo(StandardCharsets.UTF_8);
+    }
+
+    @Test
+    @DisplayName("malformedInputAction getter/setter")
+    void testMalformedInputAction() {
+        HttpClientConnectionProperties props = new HttpClientConnectionProperties();
+        assertThat(props.getMalformedInputAction()).isEqualTo(CodingErrorActionEnum.IGNORE);
+        props.setMalformedInputAction(CodingErrorActionEnum.REPLACE);
+        assertThat(props.getMalformedInputAction()).isEqualTo(CodingErrorActionEnum.REPLACE);
+    }
+
+    @Test
+    @DisplayName("unmappableInputAction getter/setter")
+    void testUnmappableInputAction() {
+        HttpClientConnectionProperties props = new HttpClientConnectionProperties();
+        assertThat(props.getUnmappableInputAction()).isEqualTo(CodingErrorActionEnum.IGNORE);
+        props.setUnmappableInputAction(CodingErrorActionEnum.REPORT);
+        assertThat(props.getUnmappableInputAction()).isEqualTo(CodingErrorActionEnum.REPORT);
+    }
+
+    @Test
+    @DisplayName("messageConstraints getter/setter")
+    void testMessageConstraints() {
+        HttpClientConnectionProperties props = new HttpClientConnectionProperties();
+        assertThat(props.getMessageConstraints()).isNull();
+        MessageConstraints constraints = MessageConstraints.custom().setMaxHeaderCount(100).setMaxLineLength(2000).build();
+        props.setMessageConstraints(constraints);
+        assertThat(props.getMessageConstraints()).isEqualTo(constraints);
+    }
+
+    @Test
+    @DisplayName("CodingErrorActionEnum value() returns name")
+    void testCodingErrorActionEnumValue() {
+        assertThat(CodingErrorActionEnum.IGNORE.value()).isEqualTo("IGNORE");
+        assertThat(CodingErrorActionEnum.REPLACE.value()).isEqualTo("REPLACE");
+        assertThat(CodingErrorActionEnum.REPORT.value()).isEqualTo("REPORT");
+    }
+
+    @Test
+    @DisplayName("CodingErrorActionEnum equals(CodingErrorActionEnum)")
+    void testCodingErrorActionEnumEqualsEnum() {
+        assertThat(CodingErrorActionEnum.IGNORE.equals(CodingErrorActionEnum.IGNORE)).isTrue();
+        assertThat(CodingErrorActionEnum.IGNORE.equals(CodingErrorActionEnum.REPLACE)).isFalse();
+    }
+
+    @Test
+    @DisplayName("CodingErrorActionEnum equals(String)")
+    void testCodingErrorActionEnumEqualsString() {
+        assertThat(CodingErrorActionEnum.IGNORE.equals("IGNORE")).isTrue();
+        assertThat(CodingErrorActionEnum.IGNORE.equals("ignore")).isTrue();
+        assertThat(CodingErrorActionEnum.IGNORE.equals("REPLACE")).isFalse();
+    }
+
+    @Test
+    @DisplayName("CodingErrorActionEnum valueOfIgnoreCase")
+    void testCodingErrorActionEnumValueOfIgnoreCase() {
+        assertThat(CodingErrorActionEnum.valueOfIgnoreCase("IGNORE")).isEqualTo(CodingErrorActionEnum.IGNORE);
+        assertThat(CodingErrorActionEnum.valueOfIgnoreCase("replace")).isEqualTo(CodingErrorActionEnum.REPLACE);
+        assertThat(CodingErrorActionEnum.valueOfIgnoreCase("Report")).isEqualTo(CodingErrorActionEnum.REPORT);
+    }
+
+    @Test
+    @DisplayName("PREFIX constant")
+    void testPrefix() {
+        assertThat(HttpClientConnectionProperties.PREFIX).isEqualTo("httpclient.connection");
     }
 }

@@ -15,8 +15,12 @@
  */
 package org.apache.http.spring.boot.client;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -30,9 +34,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 class RequestFirstTest {
 
     @Test
-    @DisplayName("Instance can be created via constructor")
-    void testInstantiation() {
-        RequestFirst instance = new RequestFirst();
-        assertThat(instance).isNotNull();
+    @DisplayName("Annotation is present and has RUNTIME retention")
+    void testAnnotationRetention() {
+        Retention retention = RequestFirst.class.getAnnotation(Retention.class);
+        assertThat(retention).isNotNull();
+        assertThat(retention.value()).isEqualTo(RetentionPolicy.RUNTIME);
+    }
+
+    @Test
+    @DisplayName("Annotation is a Qualifier")
+    void testIsQualifier() {
+        assertThat(RequestFirst.class.isAnnotationPresent(Qualifier.class)).isTrue();
+    }
+
+    @Test
+    @DisplayName("Annotation class is accessible")
+    void testClassAccessible() {
+        assertThat(RequestFirst.class).isNotNull();
+        assertThat(RequestFirst.class.isAnnotation()).isTrue();
     }
 }

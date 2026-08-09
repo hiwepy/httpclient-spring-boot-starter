@@ -30,9 +30,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 class HttpClientParamsTest {
 
     @Test
-    @DisplayName("Instance can be created via constructor")
-    void testInstantiation() {
-        HttpClientParams instance = new HttpClientParams();
-        assertThat(instance).isNotNull();
+    @DisplayName("Enum values are accessible")
+    void testEnumValues() {
+        HttpClientParams[] values = HttpClientParams.values();
+        assertThat(values).isNotEmpty();
+        assertThat(values.length).isGreaterThanOrEqualTo(12);
+    }
+
+    @Test
+    @DisplayName("Enum constant has name and default value")
+    void testEnumConstantProperties() {
+        HttpClientParams param = HttpClientParams.HTTP_CONNECTION_KEEPALIVE;
+        assertThat(param.getName()).isEqualTo("http.connection.keepAlive");
+        assertThat(param.getDefault()).isEqualTo("30000");
+    }
+
+    @Test
+    @DisplayName("valueOf resolves by name")
+    void testValueOf() {
+        HttpClientParams param = HttpClientParams.valueOf("HTTP_CONNECTION_KEEPALIVE");
+        assertThat(param).isSameAs(HttpClientParams.HTTP_CONNECTION_KEEPALIVE);
     }
 }

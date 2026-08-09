@@ -1,38 +1,92 @@
-/*
- * Copyright (c) 2018, hiwepy (https://github.com/hiwepy).
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
- */
 package org.apache.http.spring.boot.client;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * Unit tests for {{ @link ResponseContent }}.
- *
- * @author [@Loong Wan](https://github.com/loong10k)
- * @since 1.0.0
- */
 @DisplayName("ResponseContent Tests")
 class ResponseContentTest {
 
     @Test
-    @DisplayName("Instance can be created via constructor")
-    void testInstantiation() {
-        ResponseContent instance = new ResponseContent();
-        assertThat(instance).isNotNull();
+    @DisplayName("Default constructor creates non-null instance")
+    void testDefaultInstance() {
+        ResponseContent content = new ResponseContent();
+        assertThat(content).isNotNull();
+    }
+
+    @Test
+    @DisplayName("encoding getter/setter")
+    void testEncoding() {
+        ResponseContent content = new ResponseContent();
+        content.setEncoding("UTF-8");
+        assertThat(content.getEncoding()).isEqualTo("UTF-8");
+    }
+
+    @Test
+    @DisplayName("contentBytes getter/setter")
+    void testContentBytes() {
+        ResponseContent content = new ResponseContent();
+        byte[] bytes = "hello".getBytes();
+        content.setContentBytes(bytes);
+        assertThat(content.getContentBytes()).isEqualTo(bytes);
+    }
+
+    @Test
+    @DisplayName("statusCode getter/setter")
+    void testStatusCode() {
+        ResponseContent content = new ResponseContent();
+        content.setStatusCode(200);
+        assertThat(content.getStatusCode()).isEqualTo(200);
+    }
+
+    @Test
+    @DisplayName("contentText getter/setter")
+    void testContentText() {
+        ResponseContent content = new ResponseContent();
+        content.setContentText("response body");
+        assertThat(content.getContentText()).isEqualTo("response body");
+    }
+
+    @Test
+    @DisplayName("contentType getter/setter")
+    void testContentType() {
+        ResponseContent content = new ResponseContent();
+        content.setContentType("application/json");
+        assertThat(content.getContentType()).isEqualTo("application/json");
+    }
+
+    @Test
+    @DisplayName("contentTypeString getter/setter")
+    void testContentTypeString() {
+        ResponseContent content = new ResponseContent();
+        content.setContentTypeString("text/html; charset=UTF-8");
+        assertThat(content.getContentTypeString()).isEqualTo("text/html; charset=UTF-8");
+    }
+
+    @Test
+    @DisplayName("content getter/setter")
+    void testContent() {
+        ResponseContent content = new ResponseContent();
+        InputStream is = new ByteArrayInputStream("test".getBytes());
+        content.setContent(is);
+        assertThat(content.getContent()).isEqualTo(is);
+    }
+
+    @Test
+    @DisplayName("allHeaders getter/setter")
+    void testAllHeaders() {
+        ResponseContent content = new ResponseContent();
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Content-Type", "application/json");
+        headers.put("X-Request-Id", "12345");
+        content.setAllHeaders(headers);
+        assertThat(content.getAllHeaders()).containsEntry("Content-Type", "application/json")
+                .containsEntry("X-Request-Id", "12345");
     }
 }

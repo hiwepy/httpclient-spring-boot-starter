@@ -491,7 +491,7 @@
         <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
         <maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
         <commons-net.version>3.6</commons-net.version>
-        <commons-not-yet-ssl.version>0.3.9</commons-not-yet-ssl.version>
+        <commons-not-yet-ssl.version>0.3.11</commons-not-yet-ssl.version>
         <dom4j.version>2.1.1</dom4j.version>
         <fastjson.version>1.2.75</fastjson.version>
         <guava.version>30.0-jre</guava.version>
@@ -499,6 +499,7 @@
         <xstream.version>1.4.11.1</xstream.version>
                 <dropwizard-metrics.version>4.2.39</dropwizard-metrics.version>
                 <httpclient.version>4.5.14</httpclient.version>
+                <httpasyncclient.version>4.1.5</httpasyncclient.version>
                 <slf4j.version>2.0.18</slf4j.version>
     </properties>
     
@@ -510,7 +511,7 @@
             
             <!-- For Not-Yet-Commons Ssl -->
             <dependency>
-                <groupId>org.apache.commons</groupId>
+                <groupId>ca.juliusdavies</groupId>
                 <artifactId>not-yet-commons-ssl</artifactId>
                 <version>${commons-not-yet-ssl.version}</version>
             </dependency>
@@ -646,16 +647,23 @@
             <artifactId>httpclient-cache</artifactId>
             <version>${httpclient.version}</version>
         </dependency>
+        <!-- For HttpClient 5 (required by Spring Framework 7.x HttpComponentsClientHttpRequestFactory) -->
+        <dependency>
+            <groupId>org.apache.httpcomponents.client5</groupId>
+            <artifactId>httpclient5</artifactId>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/fluent-hc -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>fluent-hc</artifactId>
+            <version>${httpclient.version}</version>
         </dependency>
         
         <!-- For HttpClient -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpasyncclient</artifactId>
+            <version>${httpasyncclient.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpasyncclient-cache -->
         <dependency>
@@ -668,10 +676,11 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpmime</artifactId>
+            <version>${httpclient.version}</version>
         </dependency>
         <!-- For Not-Yet-Commons Ssl -->
         <dependency>
-            <groupId>org.apache.commons</groupId>
+            <groupId>ca.juliusdavies</groupId>
             <artifactId>not-yet-commons-ssl</artifactId>
         </dependency>
         <!-- For Commons Lang3 -->
@@ -705,11 +714,19 @@
         <dependency>
             <groupId>io.dropwizard.metrics</groupId>
             <artifactId>metrics-httpasyncclient</artifactId>
+            <version>${dropwizard-metrics.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream -->
         <dependency>
             <groupId>com.thoughtworks.xstream</groupId>
             <artifactId>xstream</artifactId>
+        </dependency>
+
+        <!-- For Testing -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>

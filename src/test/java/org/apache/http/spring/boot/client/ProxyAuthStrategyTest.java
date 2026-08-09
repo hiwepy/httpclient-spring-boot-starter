@@ -15,8 +15,12 @@
  */
 package org.apache.http.spring.boot.client;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -30,9 +34,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ProxyAuthStrategyTest {
 
     @Test
-    @DisplayName("Instance can be created via constructor")
-    void testInstantiation() {
-        ProxyAuthStrategy instance = new ProxyAuthStrategy();
-        assertThat(instance).isNotNull();
+    @DisplayName("Annotation is present and has RUNTIME retention")
+    void testAnnotationRetention() {
+        Retention retention = ProxyAuthStrategy.class.getAnnotation(Retention.class);
+        assertThat(retention).isNotNull();
+        assertThat(retention.value()).isEqualTo(RetentionPolicy.RUNTIME);
+    }
+
+    @Test
+    @DisplayName("Annotation is a Qualifier")
+    void testIsQualifier() {
+        assertThat(ProxyAuthStrategy.class.isAnnotationPresent(Qualifier.class)).isTrue();
+    }
+
+    @Test
+    @DisplayName("Annotation class is accessible")
+    void testClassAccessible() {
+        assertThat(ProxyAuthStrategy.class).isNotNull();
+        assertThat(ProxyAuthStrategy.class.isAnnotation()).isTrue();
     }
 }

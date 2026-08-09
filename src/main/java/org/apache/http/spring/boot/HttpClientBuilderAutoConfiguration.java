@@ -261,26 +261,21 @@ public class HttpClientBuilderAutoConfiguration {
     }
 
 	/**
-	 * Create a Spring {@link HttpComponentsClientHttpRequestFactory} backed by the configured HttpClient,
-	 * applying request timeouts and the buffer-request-body flag.
-	 * @param httpClientBuilder the HttpClient builder
-	 * @param properties HttpClient properties
+	 * Create a Spring {@link HttpComponentsClientHttpRequestFactory} backed by a default HC5 HttpClient,
+	 * applying request timeouts.
+	 * <p>Spring Framework 7.x requires Apache HttpClient 5 (HC5); the HC4-based {@link HttpClientBuilder}
+	 * bean is kept separately for backward compatibility with Dropwizard-metrics instrumentation.</p>
 	 * @param requestProperties request properties
 	 * @return a HttpComponents-based client request factory
 	 */
 	@Bean
 	public HttpComponentsClientHttpRequestFactory httpComponentsClientHttpRequestFactory(
-			HttpClientBuilder httpClientBuilder,
-			HttpClientProperties properties,
 			HttpClientRequestProperties requestProperties) {
-    	
-		HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory();
-		clientHttpRequestFactory.setBufferRequestBody(properties.isBufferRequestBody());
+
+		HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory(org.apache.hc.client5.http.impl.classic.HttpClients.createDefault());
 		clientHttpRequestFactory.setConnectionRequestTimeout(requestProperties.getConnectionRequestTimeout());
-		clientHttpRequestFactory.setConnectTimeout(requestProperties.getConnectTimeout());
-		clientHttpRequestFactory.setHttpClient(httpClientBuilder.build());
 		clientHttpRequestFactory.setReadTimeout(requestProperties.getSocketTimeout());
-		
+
 		return clientHttpRequestFactory;
 	}
 	
