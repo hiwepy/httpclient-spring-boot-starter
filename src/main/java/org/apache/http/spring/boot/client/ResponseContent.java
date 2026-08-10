@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Encapsulates the data returned by an HttpClient request, including status code, content bytes/text,
  * content type, headers and the underlying input stream.
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 public class ResponseContent {

@@ -12,7 +12,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * <p>Controls GZIP handling, keep-alive duration, connection pool sizing, retry behaviour, request line
  * and header limits, character encoding, proxy, user-agent, and a set of feature toggles that map directly
  * to {@link org.apache.http.impl.client.HttpClientBuilder} disable flags.</p>
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @ConfigurationProperties(prefix = HttpClientProperties.PREFIX)

@@ -26,7 +26,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 /**
  * Spring {@link Qualifier} marker for selecting the {@link org.apache.http.HttpRequestInterceptor}
  * beans that should be added first to the request pipeline.
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @Target({ ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER, ElementType.TYPE,

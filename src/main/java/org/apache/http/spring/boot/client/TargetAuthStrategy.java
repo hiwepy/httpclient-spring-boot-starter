@@ -26,7 +26,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 /**
  * Spring {@link Qualifier} marker for selecting the target-side
  * {@link org.apache.http.client.AuthenticationStrategy} bean to inject.
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @Target({ ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER, ElementType.TYPE,

@@ -10,7 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * Configuration properties for the HttpClient connection manager, bound to the {@code httpclient.manager.*}
  * prefix. Covers connect and socket timeouts, SSL protocol, idle/expired connection eviction, pool sizing,
  * connection time-to-live and feature toggles that mirror {@link org.apache.http.impl.client.HttpClientBuilder}.
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @ConfigurationProperties(prefix = HttpClientManagerProperties.PREFIX)

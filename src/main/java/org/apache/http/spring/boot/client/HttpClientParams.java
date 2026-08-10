@@ -8,7 +8,7 @@ import java.util.Locale;
  * Enumeration of well-known HttpClient configuration parameter keys together with their default values.
  * <p>Each constant exposes the property name and a default string value used across the
  * {@code httpclient.*} configuration properties.</p>
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 public enum HttpClientParams {

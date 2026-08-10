@@ -58,7 +58,7 @@ import org.springframework.util.CollectionUtils;
  * {@link HttpClientConnectionManager} and the resulting {@link CloseableHttpClient} bean, wiring together
  * the dependency beans produced by {@link HttpClientDependsOnAutoConfiguration} and (optionally)
  * {@link HttpClientMetricAutoConfiguration}.
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @Configuration

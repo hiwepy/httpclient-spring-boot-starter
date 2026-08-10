@@ -25,7 +25,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * Configuration properties for HttpClient requests, bound to the {@code httpclient.request.*} prefix.
  * <p>Maps directly to {@link org.apache.http.client.config.RequestConfig} plus retry-related settings
  * consumed by the configured {@link org.apache.http.client.HttpRequestRetryHandler}.</p>
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @ConfigurationProperties(prefix = HttpClientRequestProperties.PREFIX)

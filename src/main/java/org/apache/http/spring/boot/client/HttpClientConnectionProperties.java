@@ -25,7 +25,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * Configuration properties for the HttpClient connection layer, bound to the {@code httpclient.connection.*}
  * prefix. Captures buffer size, fragment size hint, character set, coding-error actions and message
  * constraints used when building the {@link org.apache.http.config.ConnectionConfig}.
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @ConfigurationProperties(prefix = HttpClientConnectionProperties.PREFIX)

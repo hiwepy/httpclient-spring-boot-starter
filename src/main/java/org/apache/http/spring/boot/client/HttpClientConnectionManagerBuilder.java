@@ -23,7 +23,7 @@ import org.apache.http.impl.conn.SystemDefaultDnsResolver;
  * <p>Subclasses (e.g. the Dropwizard-metrics instrumented variant) can override
  * {@link #instance} to supply a custom connection-manager implementation.</p>
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 public class HttpClientConnectionManagerBuilder {

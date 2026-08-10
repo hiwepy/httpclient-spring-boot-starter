@@ -56,7 +56,7 @@ import com.codahale.metrics.httpclient.InstrumentedHttpRequestExecutor;
  * Optional Dropwizard Metrics-backed auto-configuration that instruments the HttpClient connection
  * manager and request executor, activated when {@code httpclient.metrics.enabled=true} and the
  * Metrics library is on the classpath.
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @Configuration
