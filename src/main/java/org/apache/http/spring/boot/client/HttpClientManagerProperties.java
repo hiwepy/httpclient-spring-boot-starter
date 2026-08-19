@@ -49,50 +49,61 @@ public class HttpClientManagerProperties {
     
     private HttpHost proxy;
     private String userAgent;
+	/** Gets the connect timeout. */
 
 	public int getConnectTimeout() {
 		return connectTimeout;
 	}
+	/** Sets the connect timeout. */
 
 	public void setConnectTimeout(int connectTimeout) {
 		this.connectTimeout = connectTimeout;
 	}
+	/** Gets the socket timeout. */
 
 	public int getSocketTimeout() {
 		return socketTimeout;
 	}
+	/** Sets the socket timeout. */
 
 	public void setSocketTimeout(int socketTimeout) {
 		this.socketTimeout = socketTimeout;
 	}
+	/** Gets the protocol. */
 
 
 	public String getProtocol() {
 		return protocol;
 	}
+	/** Sets the protocol. */
 
 	public void setProtocol(String protocol) {
 		this.protocol = protocol;
 	}
+	/** Gets the boolean property. */
 
 	public boolean getBooleanProperty(Properties properties, HttpClientParams key) { 
 		String property = properties.getProperty(key.getName(), key.getDefault()); 
 		return Boolean.getBoolean(property);
 	}
+	/** Gets the int property. */
 	
 	public int getIntProperty(Properties properties, HttpClientParams key) { 
 		String property = properties.getProperty(key.getName(), key.getDefault()); 
 		return Integer.parseInt(property);
 	}
+	/** Gets the long property. */
 	
 	public long getLongProperty(Properties properties, HttpClientParams key) { 
 		String property = properties.getProperty(key.getName(), key.getDefault()); 
 		return Long.parseLong(property);
 	}
+	/** Gets the string property. */
  
 	public String getStringProperty(Properties properties, HttpClientParams key) { 
 		return properties.getProperty(key.getName(), key.getDefault());
 	}
+	/** Sets the params. */
 	
 	protected String setParams(String message, Object... params) {
 		if (null != params && params.length > 0) {
@@ -102,143 +113,203 @@ public class HttpClientManagerProperties {
 		}
 		return message;
 	}
+	/**
+	 * <p>Is evict expired connections.</p>
+	 * @return the boolean
+	 */
 	
 	public boolean isEvictExpiredConnections() {
 		return evictExpiredConnections;
 	}
+	/** Sets the evict expired connections. */
 
 	public void setEvictExpiredConnections(boolean evictExpiredConnections) {
 		this.evictExpiredConnections = evictExpiredConnections;
 	}
+	/**
+	 * <p>Is evict idle connections.</p>
+	 * @return the boolean
+	 */
 
 	public boolean isEvictIdleConnections() {
 		return evictIdleConnections;
 	}
+	/** Sets the evict idle connections. */
 
 	public void setEvictIdleConnections(boolean evictIdleConnections) {
 		this.evictIdleConnections = evictIdleConnections;
 	}
+	/** Gets the max idle time. */
 
 	public long getMaxIdleTime() {
 		return maxIdleTime;
 	}
+	/** Sets the max idle time. */
 
 	public void setMaxIdleTime(long maxIdleTime) {
 		this.maxIdleTime = maxIdleTime;
 	}
+	/** Gets the max idle time unit. */
 
 	public TimeUnit getMaxIdleTimeUnit() {
 		return maxIdleTimeUnit;
 	}
+	/** Sets the max idle time unit. */
 
 	public void setMaxIdleTimeUnit(TimeUnit maxIdleTimeUnit) {
 		this.maxIdleTimeUnit = maxIdleTimeUnit;
 	}
+	/**
+	 * <p>Is system properties.</p>
+	 * @return the boolean
+	 */
 
 	public boolean isSystemProperties() {
 		return systemProperties;
 	}
+	/** Sets the system properties. */
 
 	public void setSystemProperties(boolean systemProperties) {
 		this.systemProperties = systemProperties;
 	}
+	/**
+	 * <p>Is redirect handling disabled.</p>
+	 * @return the boolean
+	 */
 
 	public boolean isRedirectHandlingDisabled() {
 		return redirectHandlingDisabled;
 	}
+	/** Sets the redirect handling disabled. */
 
 	public void setRedirectHandlingDisabled(boolean redirectHandlingDisabled) {
 		this.redirectHandlingDisabled = redirectHandlingDisabled;
 	}
+	/**
+	 * <p>Is automatic retries disabled.</p>
+	 * @return the boolean
+	 */
 
 	public boolean isAutomaticRetriesDisabled() {
 		return automaticRetriesDisabled;
 	}
+	/** Sets the automatic retries disabled. */
 
 	public void setAutomaticRetriesDisabled(boolean automaticRetriesDisabled) {
 		this.automaticRetriesDisabled = automaticRetriesDisabled;
 	}
+	/**
+	 * <p>Is content compression disabled.</p>
+	 * @return the boolean
+	 */
 
 	public boolean isContentCompressionDisabled() {
 		return contentCompressionDisabled;
 	}
+	/** Sets the content compression disabled. */
 
 	public void setContentCompressionDisabled(boolean contentCompressionDisabled) {
 		this.contentCompressionDisabled = contentCompressionDisabled;
 	}
+	/**
+	 * <p>Is cookie management disabled.</p>
+	 * @return the boolean
+	 */
 
 	public boolean isCookieManagementDisabled() {
 		return cookieManagementDisabled;
 	}
+	/** Sets the cookie management disabled. */
 
 	public void setCookieManagementDisabled(boolean cookieManagementDisabled) {
 		this.cookieManagementDisabled = cookieManagementDisabled;
 	}
+	/**
+	 * <p>Is auth caching disabled.</p>
+	 * @return the boolean
+	 */
 
 	public boolean isAuthCachingDisabled() {
 		return authCachingDisabled;
 	}
+	/** Sets the auth caching disabled. */
 
 	public void setAuthCachingDisabled(boolean authCachingDisabled) {
 		this.authCachingDisabled = authCachingDisabled;
 	}
+	/**
+	 * <p>Is connection state disabled.</p>
+	 * @return the boolean
+	 */
 
 	public boolean isConnectionStateDisabled() {
 		return connectionStateDisabled;
 	}
+	/** Sets the connection state disabled. */
 
 	public void setConnectionStateDisabled(boolean connectionStateDisabled) {
 		this.connectionStateDisabled = connectionStateDisabled;
 	}
+	/** Gets the max conn total. */
 
 	public int getMaxConnTotal() {
 		return maxConnTotal;
 	}
+	/** Sets the max conn total. */
 
 	public void setMaxConnTotal(int maxConnTotal) {
 		this.maxConnTotal = maxConnTotal;
 	}
+	/** Gets the max conn per route. */
 
 	public int getMaxConnPerRoute() {
 		return maxConnPerRoute;
 	}
+	/** Sets the max conn per route. */
 
 	public void setMaxConnPerRoute(int maxConnPerRoute) {
 		this.maxConnPerRoute = maxConnPerRoute;
 	}
+	/** Gets the conn time to live. */
 
 	public long getConnTimeToLive() {
 		return connTimeToLive;
 	}
+	/** Sets the conn time to live. */
 
 	public void setConnTimeToLive(long connTimeToLive) {
 		this.connTimeToLive = connTimeToLive;
 	}
+	/** Gets the conn time to live time unit. */
 
 	public TimeUnit getConnTimeToLiveTimeUnit() {
 		return connTimeToLiveTimeUnit;
 	}
+	/** Sets the conn time to live time unit. */
 
 	public void setConnTimeToLiveTimeUnit(TimeUnit connTimeToLiveTimeUnit) {
 		this.connTimeToLiveTimeUnit = connTimeToLiveTimeUnit;
 	}
+	/** Gets the proxy. */
 
 	public HttpHost getProxy() {
 		return proxy;
 	}
+	/** Sets the proxy. */
 
 	public void setProxy(HttpHost proxy) {
 		this.proxy = proxy;
 	}
+	/** Gets the user agent. */
 
 	public String getUserAgent() {
 		return userAgent;
 	}
+	/** Sets the user agent. */
 
 	public void setUserAgent(String userAgent) {
 		this.userAgent = userAgent;
 	}
-	
 	
 	
 }

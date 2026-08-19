@@ -21,13 +21,6 @@ import java.util.NoSuchElementException;
 import org.apache.http.config.MessageConstraints;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-/**
- * Configuration properties for the HttpClient connection layer, bound to the {@code httpclient.connection.*}
- * prefix. Captures buffer size, fragment size hint, character set, coding-error actions and message
- * constraints used when building the {@link org.apache.http.config.ConnectionConfig}.
- * @author <a href="https://github.com/loong10k">Loong Wan</a>
- * @since 1.0.0
- */
 @ConfigurationProperties(prefix = HttpClientConnectionProperties.PREFIX)
 public class HttpClientConnectionProperties {
 
@@ -36,6 +29,8 @@ public class HttpClientConnectionProperties {
 	/**
 	 * Enumeration mirroring {@link java.nio.charset.CodingErrorAction} values, resolved case-insensitively
 	 * when binding connection properties.
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
 	 */
 	public static enum CodingErrorActionEnum {
 
@@ -82,50 +77,62 @@ public class HttpClientConnectionProperties {
 	private CodingErrorActionEnum malformedInputAction = CodingErrorActionEnum.IGNORE;
 	private CodingErrorActionEnum unmappableInputAction = CodingErrorActionEnum.IGNORE;
 	private MessageConstraints messageConstraints;
+	/** Gets the buffer size. */
 	
 	public int getBufferSize() {
 		return bufferSize;
 	}
+	/** Sets the buffer size. */
 
 	public void setBufferSize(int bufferSize) {
 		this.bufferSize = bufferSize;
 	}
+	/** Gets the fragment size hint. */
 
 	public int getFragmentSizeHint() {
 		return fragmentSizeHint;
 	}
+	/** Sets the fragment size hint. */
 
 	public void setFragmentSizeHint(int fragmentSizeHint) {
 		this.fragmentSizeHint = fragmentSizeHint;
 	}
+	/** Gets the charset. */
 
 	public Charset getCharset() {
 		return charset;
 	}
+	/** Sets the charset. */
 
 	public void setCharset(Charset charset) {
 		this.charset = charset;
 	}
+	/** Gets the malformed input action. */
 
 	public CodingErrorActionEnum getMalformedInputAction() {
 		return malformedInputAction;
 	}
+	/** Sets the malformed input action. */
 
 	public void setMalformedInputAction(CodingErrorActionEnum malformedInputAction) {
 		this.malformedInputAction = malformedInputAction;
 	}
+	/** Gets the unmappable input action. */
 
 	public CodingErrorActionEnum getUnmappableInputAction() {
 		return unmappableInputAction;
 	}
+	/** Sets the unmappable input action. */
 
 	public void setUnmappableInputAction(CodingErrorActionEnum unmappableInputAction) {
 		this.unmappableInputAction = unmappableInputAction;
 	}
+	/** Gets the message constraints. */
 
 	public MessageConstraints getMessageConstraints() {
 		return messageConstraints;
 	}
+	/** Sets the message constraints. */
 
 	public void setMessageConstraints(MessageConstraints messageConstraints) {
 		this.messageConstraints = messageConstraints;

@@ -43,66 +43,91 @@ public class HttpClientSocketProperties {
 	private int sndBufSize;
 	private int rcvBufSize;
 	private int backlogSize;
+	/** Gets the so timeout. */
 	
 	public int getSoTimeout() {
 		return soTimeout;
 	}
+	/** Sets the so timeout. */
 
 	public void setSoTimeout(int soTimeout) {
 		this.soTimeout = soTimeout;
 	}
+	/**
+	 * <p>Is so reuse address.</p>
+	 * @return the boolean
+	 */
 
 	public boolean isSoReuseAddress() {
 		return soReuseAddress;
 	}
+	/** Sets the so reuse address. */
 
 	public void setSoReuseAddress(boolean soReuseAddress) {
 		this.soReuseAddress = soReuseAddress;
 	}
+	/** Gets the so linger. */
 
 	public int getSoLinger() {
 		return soLinger;
 	}
+	/** Sets the so linger. */
 
 	public void setSoLinger(int soLinger) {
 		this.soLinger = soLinger;
 	}
+	/**
+	 * <p>Is so keep alive.</p>
+	 * @return the boolean
+	 */
 
 	public boolean isSoKeepAlive() {
 		return soKeepAlive;
 	}
+	/** Sets the so keep alive. */
 
 	public void setSoKeepAlive(boolean soKeepAlive) {
 		this.soKeepAlive = soKeepAlive;
 	}
+	/**
+	 * <p>Is tcp no delay.</p>
+	 * @return the boolean
+	 */
 
 	public boolean isTcpNoDelay() {
 		return tcpNoDelay;
 	}
+	/** Sets the tcp no delay. */
 
 	public void setTcpNoDelay(boolean tcpNoDelay) {
 		this.tcpNoDelay = tcpNoDelay;
 	}
+	/** Gets the snd buf size. */
 
 	public int getSndBufSize() {
 		return sndBufSize;
 	}
+	/** Sets the snd buf size. */
 
 	public void setSndBufSize(int sndBufSize) {
 		this.sndBufSize = sndBufSize;
 	}
+	/** Gets the rcv buf size. */
 
 	public int getRcvBufSize() {
 		return rcvBufSize;
 	}
+	/** Sets the rcv buf size. */
 
 	public void setRcvBufSize(int rcvBufSize) {
 		this.rcvBufSize = rcvBufSize;
 	}
+	/** Gets the backlog size. */
 
 	public int getBacklogSize() {
 		return backlogSize;
 	}
+	/** Sets the backlog size. */
 
 	public void setBacklogSize(int backlogSize) {
 		this.backlogSize = backlogSize;

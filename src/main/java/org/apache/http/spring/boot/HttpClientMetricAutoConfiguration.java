@@ -52,13 +52,6 @@ import com.codahale.metrics.httpclient.HttpClientMetricNameStrategy;
 import com.codahale.metrics.httpclient.InstrumentedHttpClientConnectionManager;
 import com.codahale.metrics.httpclient.InstrumentedHttpRequestExecutor;
 
-/**
- * Optional Dropwizard Metrics-backed auto-configuration that instruments the HttpClient connection
- * manager and request executor, activated when {@code httpclient.metrics.enabled=true} and the
- * Metrics library is on the classpath.
- * @author <a href="https://github.com/loong10k">Loong Wan</a>
- * @since 1.0.0
- */
 @Configuration
 @ConditionalOnClass({ MetricRegistry.class, HttpRequestExecutor.class, InstrumentedHttpRequestExecutor.class })
 @ConditionalOnProperty(prefix = HttpClientMetricProperties.PREFIX, value = "enabled", havingValue = "true")
@@ -66,14 +59,12 @@ import com.codahale.metrics.httpclient.InstrumentedHttpRequestExecutor;
 @EnableConfigurationProperties(value = { HttpClientManagerProperties.class, HttpClientMetricProperties.class })
 public class HttpClientMetricAutoConfiguration {
 
-	/** Provide a Dropwizard {@link MetricRegistry} unless one already exists. @return a new MetricRegistry */
 	@Bean
 	@ConditionalOnMissingBean(MetricRegistry.class)
 	public MetricRegistry metricsRegistry() {
 		return new MetricRegistry();
 	}
 
-	/** Provide a default {@link HttpClientMetricNameStrategy} that namespaces metrics by HttpClient and name unless one already exists. @return a metric name strategy */
 	@Bean
 	@ConditionalOnMissingBean
 	public HttpClientMetricNameStrategy metricNameStrategy() {
@@ -85,7 +76,6 @@ public class HttpClientMetricAutoConfiguration {
 		};
 	}
 
-	/** Provide a Dropwizard-instrumented {@link HttpRequestExecutor} that records per-request metrics. @param metricsRegistry metric registry @param metricNameStrategy metric name strategy @param properties metric properties @return an InstrumentedHttpRequestExecutor */
 	@Bean
 	public HttpRequestExecutor httpRequestExecutor(MetricRegistry metricsRegistry,
 			HttpClientMetricNameStrategy metricNameStrategy, HttpClientMetricProperties properties) {
@@ -93,25 +83,6 @@ public class HttpClientMetricAutoConfiguration {
 				properties.getWaitForContinue());
 	}
 
-	/**
-	 * Build an instrumented {@link HttpClientConnectionManagerBuilder} that produces a Dropwizard-metrics
-	 * aware pooling connection manager, overriding the default builder produced by
-	 * {@code HttpClientBuilderAutoConfiguration}.
-	 * @param connectionConfig default connection configuration
-	 * @param requestConfig default request configuration
-	 * @param socketConfig default socket configuration
-	 * @param dnsResolver DNS resolver
-	 * @param keepAliveStrategy keep-alive strategy
-	 * @param publicSuffixMatcher public suffix matcher
-	 * @param schemePortResolver scheme port resolver
-	 * @param serviceUnavailStrategy service-unavailable retry strategy
-	 * @param hostnameVerifier SSL hostname verifier
-	 * @param trustManager X509 trust manager
-	 * @param properties connection manager properties
-	 * @param metricsRegistry metric registry
-	 * @param metricProperties metric properties
-	 * @return an instrumented connection manager builder
-	 */
 	@Bean
 	public HttpClientConnectionManagerBuilder connectionManagerBuilder(
 			ConnectionConfig connectionConfig,
@@ -140,6 +111,8 @@ public class HttpClientMetricAutoConfiguration {
 	/**
 	 * Connection manager builder that produces Dropwizard-instrumented
 	 * {@link InstrumentedHttpClientConnectionManager} instances.
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
 	 */
 	static class InstrumentedHttpClientConnectionManagerBuilder extends HttpClientConnectionManagerBuilder {
 

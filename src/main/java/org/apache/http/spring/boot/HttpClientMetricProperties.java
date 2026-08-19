@@ -17,26 +17,35 @@ public class HttpClientMetricProperties {
 	private boolean enabled = false;
 	private String name;
 	private int waitForContinue;
+	/**
+	 * <p>Is enabled.</p>
+	 * @return the boolean
+	 */
 
 	public boolean isEnabled() {
 		return enabled;
 	}
+	/** Sets the enabled. */
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
+	/** Gets the name. */
 
 	public String getName() {
 		return name;
 	}
+	/** Sets the name. */
 
 	public void setName(String name) {
 		this.name = name;
 	}
+	/** Gets the wait for continue. */
 
 	public int getWaitForContinue() {
 		return waitForContinue;
 	}
+	/** Sets the wait for continue. */
 
 	public void setWaitForContinue(int waitForContinue) {
 		this.waitForContinue = waitForContinue;

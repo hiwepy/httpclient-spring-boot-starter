@@ -23,17 +23,17 @@ import java.lang.annotation.Target;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 
-/**
- * Spring {@link Qualifier} marker for selecting the {@link org.apache.http.HttpRequestInterceptor}
- * beans that should be added last to the request pipeline.
- * @author <a href="https://github.com/loong10k">Loong Wan</a>
- * @since 1.0.0
- */
 @Target({ ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER, ElementType.TYPE,
 	ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Qualifier
+/**
+ * <p>Annotation for request last.</p>
+ *
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
+ * @since 1.0.0
+ */
 public @interface RequestLast {
 
 }
